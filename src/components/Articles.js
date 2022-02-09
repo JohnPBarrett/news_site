@@ -29,8 +29,8 @@ const Articles = (props) => {
               <p className="article__author">Posted by {article.author}</p>
               <p className="article__created">Feb</p>
             </div>
-            <Link to={`./${article.article_id}`}>
-              <p className="article__title">{article.title}</p>
+            <Link to={`./${article.article_id}`} className="article__title">
+              {article.title}
             </Link>
             <div className="article__user-feedback">
               <div className="article__votes">

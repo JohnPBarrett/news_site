@@ -57,6 +57,17 @@
   line-height: 1.4;
 }
 
+.article__title:link,
+.article__title:visited {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+  font-size: 1.8rem;
+  letter-spacing: 0.2px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
 .article__user-feedback {
   display: flex;
   justify-content: flex-start;

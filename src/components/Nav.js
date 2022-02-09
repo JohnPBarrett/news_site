@@ -34,7 +34,7 @@ const Nav = () => {
           onChange={(e) => changeTopic(e)}
           value={topic}
         >
-          <option value="">Choose topic</option>
+          <option value="">All</option>
           {topics.map((topic, idx) => {
             return (
               <option value={topic.slug} key={`${topic} ${idx}`}>
