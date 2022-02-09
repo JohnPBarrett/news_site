@@ -1,5 +1,7 @@
 import logo from "../assets/logo.png";
 import "./Nav.css";
+import { MagnifyingGlassSVG } from "../assets/MagnifyingGlassSVG";
+
 const Nav = () => {
   return (
     <header className="header">
@@ -16,7 +18,9 @@ const Nav = () => {
           id="search"
           placeholder="Search for articles"
         />
-        <button className="search__button"></button>
+        <button className="search__button">
+          <MagnifyingGlassSVG className="search__icon" />
+        </button>
       </form>
       <button className="header__user-login btn">user login</button>
       <button className="header__user-sign-up btn">user sign-up</button>
