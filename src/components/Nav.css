@@ -19,6 +19,7 @@
   min-width: 10rem;
   border: none;
   border-radius: 3rem;
+  outline: none;
 }
 
 .search {
@@ -36,7 +37,7 @@
   color: inherit;
   background-color: var(--color-grey-light-3);
   border: none;
-  padding: 0.5rem 2rem;
+  padding: 0.7rem 2rem;
   border-radius: 10rem;
   flex: 0 0 90%;
   transition: all 0.2s;
@@ -45,7 +46,7 @@
 .search__input:focus {
   outline: none;
   background-color: var(--color-grey-light-2);
-  flex: 0 0 98%;
+  flex: 0 0 95%;
 }
 
 .search__input:focus + .search__button {

@@ -1,15 +1,47 @@
 import logo from "../assets/logo.png";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./Nav.css";
 import { MagnifyingGlassSVG } from "../assets/MagnifyingGlassSVG";
+import { getTopics } from "../utils/api";
 
 const Nav = () => {
+  let [topics, setTopics] = useState([]);
+  let [topic, setTopic] = useState("");
+  let navigate = useNavigate();
+
+  const changeTopic = (event) => {
+    let filteredTopic = event.target.value;
+    setTopic(filteredTopic);
+
+    navigate(`/articles?topic=${filteredTopic}`);
+  };
+
+  useEffect(() => {
+    getTopics().then((data) => {
+      setTopics(data.topics);
+    });
+  }, []);
+
   return (
     <header className="header">
-      <img src={logo} alt="logo" className="logo" />
+      <Link to="/">
+        <img src={logo} alt="logo" className="logo" />
+      </Link>
       <nav className="navigation">
-        <select className="navigation__drop-down">
+        <select
+          className="navigation__drop-down"
+          onChange={(e) => changeTopic(e)}
+          value={topic}
+        >
           <option value="">Choose topic</option>
-          <option value="test">Some testing</option>
+          {topics.map((topic, idx) => {
+            return (
+              <option value={topic.slug} key={`${topic} ${idx}`}>
+                {topic.slug}
+              </option>
+            );
+          })}
         </select>
       </nav>
       <form action="#" className="search">
