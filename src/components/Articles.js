@@ -2,20 +2,31 @@ import { getArticles } from "../utils/api";
 import { useState, useEffect } from "react";
 import { UpArrowSVG, DownArrowSVG } from "../assets/ArrowsSVG";
 import { Link, useLocation } from "react-router-dom";
+import { convertDate } from "../utils/convertDate.js";
 
 import "./Articles.css";
 
 const Articles = (props) => {
   let [articles, setArticles] = useState([]);
   const location = useLocation();
+  let isHome = props.isHome || false;
 
   useEffect(() => {
-    console.log(location);
-    getArticles(location.search).then(({ articles }) => {
-      setArticles([...articles]);
-      console.log(articles);
-    });
-  }, [location]);
+    if (isHome) {
+      getHomeArticles().then(({ articles }) => {
+        setArticles([...articles]);
+      });
+    } else {
+      getArticles(location.search).then(({ articles }) => {
+        setArticles([...articles]);
+      });
+    }
+  }, [location, isHome]);
+
+  const getHomeArticles = async () => {
+    const homeArticles = await getArticles("?limit=4&sort_by=created_at");
+    return homeArticles;
+  };
 
   return (
     <main className="content">
@@ -28,9 +39,18 @@ const Articles = (props) => {
             <div className="article__details">
               <p className="article__topic">Topic: {article.topic}</p>
               <p className="article__author">Posted by {article.author}</p>
-              <p className="article__created">Feb</p>
+              <p className="article__created">
+                {convertDate(article.created_at)}
+              </p>
             </div>
-            <Link to={`./${article.article_id}`} className="article__title">
+            <Link
+              to={
+                isHome
+                  ? `./articles/${article.article_id}`
+                  : `./${article.article_id}`
+              }
+              className="article__title"
+            >
               {article.title}
             </Link>
             <div className="article__user-feedback">

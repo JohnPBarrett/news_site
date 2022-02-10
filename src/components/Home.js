@@ -1,11 +1,9 @@
-import { Link } from "react-router-dom";
+import Articles from "./Articles";
 
 const Home = () => {
   return (
     <div className="content">
-      <main>
-        <Link to="/articles">articles</Link>
-      </main>
+      <Articles isHome={true} />
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { getArticle, getArticleComments } from "../utils/api";
 import Comment from "./Comment";
 import "./Article.css";
 
-const Article = (props) => {
+const Article = () => {
   let [article, setArticle] = useState({});
   let [comments, setComments] = useState([]);
   let { id } = useParams();
@@ -28,7 +28,9 @@ const Article = (props) => {
       <div className="article-page__container">
         <article className="article-page__article">
           <div className="article-page__article__details">
-            <p className="article-page__article__author">Posted by {article.author}</p>
+            <p className="article-page__article__author">
+              Posted by {article.author}
+            </p>
             <p>{article.created_at}</p>
           </div>
           <div className="article-page__article__title">

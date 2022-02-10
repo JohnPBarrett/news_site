@@ -2,7 +2,6 @@ import "./Comment.css";
 import { UpArrowSVG, DownArrowSVG } from "../assets/ArrowsSVG";
 
 const Comment = (props) => {
-  console.log(props);
   return (
     <div className="comment__container">
       {props.comments.map((comment, idx) => {

@@ -1,27 +1,46 @@
 import logo from "../assets/logo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Nav.css";
 import { MagnifyingGlassSVG } from "../assets/MagnifyingGlassSVG";
 import { getTopics } from "../utils/api";
 
-const Nav = () => {
+const Nav = (props) => {
   let [topics, setTopics] = useState([]);
   let [topic, setTopic] = useState("");
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const changeTopic = (event) => {
     let filteredTopic = event.target.value;
     setTopic(filteredTopic);
+  };
 
-    navigate(`/articles?topic=${filteredTopic}`);
+  const handleInputChange = (event) => {
+    props.setInputFilter(event.target.value);
   };
 
   useEffect(() => {
-    getTopics().then((data) => {
-      setTopics(data.topics);
-    });
-  }, []);
+    getTopics()
+      .then((data) => {
+        setTopics(data.topics);
+      })
+      .then(() => {
+        if (topic === "all") {
+          navigate("/articles");
+        } else if (topic !== "") {
+          navigate(`/articles?topic=${topic}`);
+        } else {
+          navigate("/");
+        }
+      });
+  }, [topic]);
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setTopic("");
+    }
+  }, [location.pathname]);
 
   return (
     <header className="header">
@@ -34,7 +53,8 @@ const Nav = () => {
           onChange={(e) => changeTopic(e)}
           value={topic}
         >
-          <option value="">All</option>
+          <option value="">Home</option>
+          <option value="all">Show all</option>
           {topics.map((topic, idx) => {
             return (
               <option value={topic.slug} key={`${topic} ${idx}`}>
@@ -49,6 +69,8 @@ const Nav = () => {
           className="search__input"
           id="search"
           placeholder="Search for articles"
+          value={props.inputFilter}
+          onChange={(e) => handleInputChange(e)}
         />
         <button className="search__button">
           <MagnifyingGlassSVG className="search__icon" />
