@@ -1,7 +1,7 @@
 import { getArticles } from "../utils/api";
 import { useState, useEffect } from "react";
 import { UpArrowSVG, DownArrowSVG } from "../assets/ArrowsSVG";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import "./Articles.css";
 
@@ -10,17 +10,18 @@ const Articles = (props) => {
   const location = useLocation();
 
   useEffect(() => {
+    console.log(location);
     getArticles(location.search).then(({ articles }) => {
       setArticles([...articles]);
       console.log(articles);
     });
-  }, [location.search]);
+  }, [location]);
 
   return (
     <main className="content">
       {articles.map((article) => {
         return (
-          <div
+          <article
             className="article"
             key={`${article.title}-${article.article_id}`}
           >
@@ -33,13 +34,11 @@ const Articles = (props) => {
               {article.title}
             </Link>
             <div className="article__user-feedback">
-              <div className="article__votes">
+              <div className="votes__container">
                 <button className="arrow-button arrow-button__up">
                   <UpArrowSVG className="arrow-icon up-arrow" />
                 </button>
-                <div className="article__votes-count">
-                  {article.votes} votes
-                </div>
+                <div className="votes-count">{article.votes} votes</div>
                 <button className="arrow-button arrow-button__down">
                   <DownArrowSVG className="arrow-icon down-arrow" />
                 </button>
@@ -48,7 +47,7 @@ const Articles = (props) => {
                 {article.comment_count} comments
               </div>
             </div>
-          </div>
+          </article>
         );
       })}
     </main>

@@ -3,11 +3,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: var(--color-grey-light-1);
 }
 
 .article {
-  background-color: rgba(70, 179, 227, 0.6);
+  background-color: var(--color-primary);
+  color: var(--color-grey-dark-1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,9 +42,6 @@
   font-weight: 700;
 }
 
-.article__author {
-}
-
 .article__author,
 .article__created {
   font-weight: 200;
@@ -74,7 +71,7 @@
   align-items: center;
 }
 
-.article__votes {
+.votes__container {
   display: flex;
   margin-right: 2rem;
   align-items: center;
@@ -100,9 +97,6 @@
   fill: currentColor;
 }
 
-.article__votes-count {
+.votes-count {
   padding: 0 0.5rem;
-}
-
-.article__comments {
 }

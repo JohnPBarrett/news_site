@@ -1,0 +1,28 @@
+.comment__container {
+  margin-top: 2rem;
+}
+
+.comment {
+  background-color: var(--color-primary-light-1);
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.comment:not(:last-child) {
+  margin-bottom: 0.9rem;
+}
+
+.comment__details {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.comment__author {
+  margin-right: 2rem;
+}
+
+.comment__body {
+  padding: 0.9rem 0;
+}
