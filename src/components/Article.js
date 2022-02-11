@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import { getArticle } from "../utils/api";
+import { convertDate } from "../utils/convertDate";
 import "./Article.css";
 
 const Article = (props) => {
@@ -17,13 +18,12 @@ const Article = (props) => {
 
   return (
     <>
-      {" "}
       <article className="article-page__article">
         <div className="article-page__article__details">
           <p className="article-page__article__author">
             Posted by {article.author}
           </p>
-          <p>{article.created_at}</p>
+          <p>{convertDate(article.created_at)}</p>
         </div>
         <div className="article-page__article__title">
           <p>{article.title}</p>

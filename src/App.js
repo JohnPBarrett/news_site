@@ -3,7 +3,6 @@ import Nav from "./components/Nav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Home from "./components/Home";
-import Articles from "./components/Articles";
 import NotFound from "./components/NotFound";
 import IndividualArticlePage from "./pages/IndividualArticlePage";
 import ArticlesPage from "./pages/ArticlesPage";

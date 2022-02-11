@@ -18,11 +18,6 @@ const ArticlesPage = (props) => {
       });
   }, [location.search]);
 
-  // const getHomeArticles = async () => {
-  //   const homeArticles = await getArticles("?limit=4&sort_by=created_at");
-  //   return homeArticles;
-  // };
-
   return (
     <main className="content">
       <ArticlesContainer articles={articles} />

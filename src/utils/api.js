@@ -36,3 +36,12 @@ export const patchArticleVotes = async (article_id, voteType) => {
 
   return response.data;
 };
+
+export const postComment = async (article_id, data) => {
+  const response = await instance.post(
+    `/articles/${article_id}/comments`,
+    data
+  );
+  console.log(response);
+  return response;
+};

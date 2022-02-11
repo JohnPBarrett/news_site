@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getArticleComments } from "../utils/api";
 import Comment from "./Comment";
+import CommentPosting from "./CommentPosting";
 import "./CommentsContainer.css";
 
 const CommentsContainer = (props) => {
@@ -12,10 +13,11 @@ const CommentsContainer = (props) => {
     getArticleComments(articleId).then((data) => {
       setComments(data.comments);
     });
-  }, [articleId]);
+  }, [articleId, comments]);
 
   return (
     <div className="comment__container">
+      <CommentPosting articleId={articleId} />
       <Comment comments={comments} />
     </div>
   );
