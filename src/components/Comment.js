@@ -1,9 +1,8 @@
-import "./Comment.css";
 import { UpArrowSVG, DownArrowSVG } from "../assets/ArrowsSVG";
 
 const Comment = (props) => {
   return (
-    <div className="comment__container">
+    <>
       {props.comments.map((comment, idx) => {
         return (
           <div className="comment" key={`${comment.author} ${idx}`}>
@@ -26,7 +25,7 @@ const Comment = (props) => {
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
 

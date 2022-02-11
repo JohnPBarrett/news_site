@@ -20,9 +20,19 @@ export const getTopics = async () => {
   return response.data;
 };
 
-
 export const getArticleComments = async (article_id) => {
   const response = await instance.get(`/articles/${article_id}/comments`);
   return response.data;
 };
 
+export const patchArticleVotes = async (article_id, voteType) => {
+  let vote = {};
+  if (voteType === "inc") {
+    vote.inc_votes = 1;
+  } else if (voteType === "dec") {
+    vote.inc_votes = -1;
+  }
+  const response = await instance.patch(`/articles/${article_id}`, vote);
+
+  return response.data;
+};
