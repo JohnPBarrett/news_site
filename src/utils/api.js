@@ -37,6 +37,18 @@ export const patchArticleVotes = async (article_id, voteType) => {
   return response.data;
 };
 
+export const patchCommentVotes = async (comment_id, voteType) => {
+  let vote = {};
+  if (voteType === "inc") {
+    vote.inc_votes = 1;
+  } else if (voteType === "dec") {
+    vote.inc_votes = -1;
+  }
+  const response = await instance.patch(`/comments/${comment_id}`, vote);
+
+  return response.data;
+}
+
 export const postComment = async (article_id, data) => {
   const response = await instance.post(
     `/articles/${article_id}/comments`,

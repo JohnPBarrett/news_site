@@ -1,5 +1,5 @@
-import { UpArrowSVG, DownArrowSVG } from "../assets/ArrowsSVG";
 import { convertDate } from "../utils/convertDate";
+import Votes from "./Votes";
 
 const Comment = (props) => {
   return (
@@ -16,15 +16,11 @@ const Comment = (props) => {
             </div>
 
             <div className="comment__body">{comment.body}</div>
-            <div className="votes__container">
-              <button className="arrow-button arrow-button__up">
-                <UpArrowSVG className="arrow-icon up-arrow" />
-              </button>
-              <div className="votes-count">{comment.votes} votes</div>
-              <button className="arrow-button arrow-button__down">
-                <DownArrowSVG className="arrow-icon down-arrow" />
-              </button>
-            </div>
+            <Votes
+              id={comment.comment_id}
+              votes={comment.votes}
+              voteType="comment"
+            />
           </div>
         );
       })}

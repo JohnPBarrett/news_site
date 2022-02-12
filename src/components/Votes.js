@@ -1,41 +1,66 @@
 import { UpArrowSVG, DownArrowSVG } from "../assets/ArrowsSVG";
 import { useState } from "react";
-import { patchArticleVotes } from "../utils/api";
+import { patchArticleVotes, patchCommentVotes } from "../utils/api";
 
 const Votes = (props) => {
   const linkId = props.id;
   const [votes, setVotes] = useState(props.votes);
 
-  const voteIncrease = (event) => {
-    const { article_id } = event.currentTarget.dataset;
-    setVotes((current) => current + 1);
-    patchArticleVotes(article_id, "inc").catch((err) => {
-      setVotes((current) => current - 1);
-    });
-  };
-
-  const voteDecrease = (event) => {
-    const { article_id } = event.currentTarget.dataset;
-    setVotes((current) => current - 1);
-    patchArticleVotes(article_id, "dec").catch((err) => {
+  const voteChange = (event, voteChangeValue, voteChangeType) => {
+    const { id } = event.currentTarget.dataset;
+    if (voteChangeValue === "inc") {
       setVotes((current) => current + 1);
-    });
+
+      switch (voteChangeType) {
+        case "article":
+          patchArticleVotes(id, voteChangeValue).catch((err) => {
+            setVotes((current) => current - 1);
+          });
+          break;
+        case "comment":
+          patchCommentVotes(id, voteChangeValue).catch((err) => {
+            setVotes((current) => current - 1);
+          });
+          break;
+
+        default:
+          break;
+      }
+    } else {
+      setVotes((current) => current - 1);
+
+      switch (voteChangeType) {
+        case "article":
+          patchArticleVotes(id, voteChangeValue).catch((err) => {
+            setVotes((current) => current + 1);
+          });
+          break;
+        case "comment":
+          patchCommentVotes(id, voteChangeValue).catch((err) => {
+            setVotes((current) => current + 1);
+          });
+
+          break;
+        default:
+          break;
+      }
+    }
   };
 
   return (
     <div className="votes__container">
       <button
         className="arrow-button arrow-button__up"
-        data-article_id={linkId}
-        onClick={(e) => voteIncrease(e)}
+        data-id={linkId}
+        onClick={(e) => voteChange(e, "inc", props.voteType)}
       >
         <UpArrowSVG className="arrow-icon up-arrow" />
       </button>
       <div className="votes-count">{votes} votes</div>
       <button
         className="arrow-button arrow-button__down"
-        data-article_id={linkId}
-        onClick={(e) => voteDecrease(e)}
+        data-id={linkId}
+        onClick={(e) => voteChange(e, "dec", props.voteType)}
       >
         <DownArrowSVG className="arrow-icon down-arrow" />
       </button>
