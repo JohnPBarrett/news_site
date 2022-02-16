@@ -1,9 +1,6 @@
 import logo from "../assets/logo.png";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Nav.css";
-import { MagnifyingGlassSVG } from "../assets/MagnifyingGlassSVG";
-import { getTopics } from "../utils/api";
 import NavDropdown from "./NavDropdown";
 import NavInputField from "./NavInputField";
 
@@ -62,7 +59,9 @@ const Nav = (props) => {
       </Link>
       <NavDropdown />
       <NavInputField />
-      <button className="header__user-login btn">user login</button>
+      <Link to="/login">
+        <button className="header__user-login btn">user login</button>
+      </Link>
       <button className="header__user-sign-up btn">user sign-up</button>
     </header>
   );

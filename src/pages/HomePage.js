@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../utils/api";
-import ArticlesContainer from "./ArticlesContainer";
+import ArticlesContainer from "../components/ArticlesContainer";
 
 const Home = () => {
   let [articles, setArticles] = useState([]);

@@ -9,6 +9,7 @@ const ArticlesPage = (props) => {
   // let [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log(location.search);
     getArticles(location.search)
       .then((data) => {
         setArticles(data.articles);
