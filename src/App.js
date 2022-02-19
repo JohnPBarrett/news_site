@@ -7,26 +7,31 @@ import NotFound from "./components/NotFound";
 import IndividualArticlePage from "./pages/IndividualArticlePage";
 import ArticlesPage from "./pages/ArticlesPage";
 import LoginPage from "./pages/LoginPage";
+import { UserContext } from "./context/UserContext";
 
 function App() {
-  let [inputFilter, setInputFilter] = useState("");
+  const [inputFilter, setInputFilter] = useState("");
+  const [user, setUser] = useState("guest");
+
   return (
-    <BrowserRouter>
-      <div className="container">
-        <Nav setInputFilter={setInputFilter} inputFilter={inputFilter} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/articles"
-            inputFilter={inputFilter}
-            element={<ArticlesPage />}
-          />
-          <Route path="/articles/:id" element={<IndividualArticlePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route component={NotFound} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <UserContext.Provider value={{ user, setUser }}>
+      <BrowserRouter>
+        <div className="container">
+          <Nav setInputFilter={setInputFilter} inputFilter={inputFilter} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/articles"
+              inputFilter={inputFilter}
+              element={<ArticlesPage />}
+            />
+            <Route path="/articles/:id" element={<IndividualArticlePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route component={NotFound} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 
