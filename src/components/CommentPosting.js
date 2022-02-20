@@ -1,8 +1,10 @@
 import { postComment } from "../utils/api";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 const CommentPosting = (props) => {
   let [commentBody, setCommentBody] = useState("");
+  let { user, setUser } = useContext(UserContext);
 
   const handleChange = (event) => {
     setCommentBody(event.target.value);
@@ -12,7 +14,7 @@ const CommentPosting = (props) => {
     event.preventDefault();
 
     const data = {
-      username: "grumpy19",
+      username: user,
       body: commentBody,
     };
 

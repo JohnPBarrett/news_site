@@ -1,12 +1,16 @@
 import "./LoginPage.css";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 const LoginPage = () => {
+  const { user, setUser } = useContext(UserContext);
+
   return (
     <div className="content">
       <div className="login-form__container">
         <form className="login-form">
           <div className="login-form__group">
-            <label for="username" className="login-form__label">
+            <label htmlFor="username" className="login-form__label">
               Username *
             </label>
             <input
@@ -18,7 +22,7 @@ const LoginPage = () => {
             ></input>
           </div>
           <div className="login-form__group">
-            <label for="password" className="login-form__label">
+            <label htmlFor="password" className="login-form__label">
               Password *
             </label>
             <input
@@ -30,7 +34,7 @@ const LoginPage = () => {
             ></input>
           </div>
           <div className="login-form__group">
-            <label for="avatar-url" className="login-form__label">
+            <label htmlFor="avatar-url" className="login-form__label">
               avatar url
             </label>
             <input

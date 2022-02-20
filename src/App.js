@@ -11,7 +11,7 @@ import { UserContext } from "./context/UserContext";
 
 function App() {
   const [inputFilter, setInputFilter] = useState("");
-  const [user, setUser] = useState("guest");
+  const [user, setUser] = useState("jessjelly");
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

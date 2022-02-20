@@ -3,55 +3,11 @@ import { Link } from "react-router-dom";
 import "./Nav.css";
 import NavDropdown from "./NavDropdown";
 import NavInputField from "./NavInputField";
+import { UserContext } from "../context/UserContext";
+import { useContext } from "react";
 
 const Nav = (props) => {
-  // let [topics, setTopics] = useState([]);
-  // let [topic, setTopic] = useState("");
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // let [inputValue, setInputValue] = useState("");
-
-  // const changeTopic = (event) => {
-  //   let filteredTopic = event.target.value;
-  //   setTopic(filteredTopic);
-  // };
-
-  // const handleInputChange = (event) => {
-  //   setInputValue(event.target.value);
-  // };
-
-  // const handleSearch = (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     navigate(`/articles?search=${inputValue}`);
-  //     setInputValue("");
-  //   } catch (err) {
-  //     navigate("/articles");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getTopics()
-  //     .then((data) => {
-  //       setTopics(data.topics);
-  //     })
-  //     .then(() => {
-  //       if (topic === "all") {
-  //         navigate("/articles");
-  //       } else if (topic !== "") {
-  //         navigate(`/articles?topic=${topic}`);
-  //       } else {
-  //         navigate("/");
-  //       }
-  //     });
-  // }, [topic]);
-
-  // useEffect(() => {
-  //   if (location.pathname === "/") {
-  //     setTopic("");
-  //   }
-  // }, [location.pathname]);
-
+  const {user} = useContext(UserContext)
   return (
     <header className="header">
       <Link to="/">
@@ -63,6 +19,7 @@ const Nav = (props) => {
         <button className="header__user-login btn">user login</button>
       </Link>
       <button className="header__user-sign-up btn">user sign-up</button>
+      <p>Logged in as {user}</p>
     </header>
   );
 };
