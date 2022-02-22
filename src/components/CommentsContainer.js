@@ -10,9 +10,19 @@ const CommentsContainer = (props) => {
   let [comments, setComments] = useState([]);
 
   useEffect(() => {
-    getArticleComments(articleId).then((data) => {
-      setComments(data.comments);
-    });
+    // abort controller added to stop memory leaks
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    getArticleComments(articleId, signal)
+      .then((data) => {
+        setComments(data.comments);
+      })
+      .catch(() => {});
+    return () => controller.abort();
+    // .finally(() => {
+    //   props.setCommentsLoaded(true);
+    // });
   }, [articleId, comments]);
 
   return (

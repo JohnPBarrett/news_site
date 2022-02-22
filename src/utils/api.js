@@ -20,8 +20,10 @@ export const getTopics = async () => {
   return response.data;
 };
 
-export const getArticleComments = async (article_id) => {
-  const response = await instance.get(`/articles/${article_id}/comments`);
+export const getArticleComments = async (article_id, signal) => {
+  const response = await instance.get(`/articles/${article_id}/comments`, {
+    signal: signal
+  });
   return response.data;
 };
 

@@ -13,6 +13,7 @@ const Article = (props) => {
     setArticle([]);
     getArticle(articleId).then((data) => {
       setArticle(data.article);
+      props.setArticleLoaded(true);
     });
   }, [articleId]);
 
