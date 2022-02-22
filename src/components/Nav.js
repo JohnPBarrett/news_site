@@ -7,7 +7,26 @@ import { UserContext } from "../context/UserContext";
 import { useContext } from "react";
 
 const Nav = (props) => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
+  const logout = (e) => {
+    setUser("guest");
+  };
+
+  const registrationButton = (
+    <Link to="/register">
+      <button className="header__user-sign-up btn">user sign-up</button>
+    </Link>
+  );
+
+  const logoutButton = (
+    <span>
+      <button className="header__user-log-out btn" onClick={(e) => logout(e)}>
+        Sign out
+      </button>
+    </span>
+  );
+
   return (
     <header className="header">
       <Link to="/">
@@ -18,9 +37,9 @@ const Nav = (props) => {
       <Link to="/login">
         <button className="header__user-login btn">user login</button>
       </Link>
-      <Link to="/register">
-        <button className="header__user-sign-up btn">user sign-up</button>
-      </Link>
+
+      {user === "guest" ? registrationButton : logoutButton}
+
       <p>Logged in as {user}</p>
     </header>
   );

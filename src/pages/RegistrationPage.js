@@ -4,7 +4,7 @@ import { UserContext } from "../context/UserContext";
 import { registeruser } from "../utils/api";
 
 const RegistrationPage = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   const signUp = async (event) => {
     event.preventDefault();

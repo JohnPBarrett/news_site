@@ -1,6 +1,6 @@
 import "./App.css";
 import Nav from "./components/Nav";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { useState } from "react";
 import Home from "./pages/HomePage";
 import NotFound from "./components/NotFound";
@@ -12,7 +12,7 @@ import RegistrationPage from "./pages/RegistrationPage";
 
 function App() {
   const [inputFilter, setInputFilter] = useState("");
-  const [user, setUser] = useState("jessjelly");
+  const [user, setUser] = useState("guest");
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -28,7 +28,12 @@ function App() {
             />
             <Route path="/articles/:id" element={<IndividualArticlePage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegistrationPage />} />
+            <Route
+              path="/register"
+              element={
+                user === "guest" ? <RegistrationPage /> : <Navigate to="/" />
+              }
+            />
             <Route component={NotFound} />
           </Routes>
         </div>
