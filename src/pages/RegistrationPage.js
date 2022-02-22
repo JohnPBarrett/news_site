@@ -1,14 +1,39 @@
 import "./RegistrationPage.css";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { registeruser } from "../utils/api";
 
 const RegistrationPage = () => {
   const { user, setUser } = useContext(UserContext);
 
+  const signUp = async (event) => {
+    event.preventDefault();
+    const data = {
+      username: event.target.username.value,
+      password: event.target.password.value,
+      name: event.target.name.value,
+      avatar_url: event.target.avatar_url.value
+    };
+
+    console.log(data);
+
+    try {
+      const response = await registeruser(data);
+      console.log(response);
+      setUser(data.username);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="content">
       <div className="registration-form__container">
-        <form className="registration-form">
+        <form
+          className="registration-form"
+          action="post"
+          onSubmit={(e) => signUp(e)}
+        >
           <div className="registration-form__group">
             <label htmlFor="username" className="registration-form__label">
               Username *
@@ -16,6 +41,18 @@ const RegistrationPage = () => {
             <input
               id="username"
               name="username"
+              type="text"
+              className="registration-form__control"
+              required
+            ></input>
+          </div>
+          <div className="registration-form__group">
+            <label htmlFor="name" className="registration-form__label">
+              name *
+            </label>
+            <input
+              id="name"
+              name="name"
               type="text"
               className="registration-form__control"
               required
@@ -34,12 +71,12 @@ const RegistrationPage = () => {
             ></input>
           </div>
           <div className="registration-form__group">
-            <label htmlFor="avatar-url" className="registration-form__label">
+            <label htmlFor="avatar_url" className="registration-form__label">
               avatar url
             </label>
             <input
-              id="avatar-url"
-              name="avatar-url"
+              id="avatar_url"
+              name="avatar_url"
               type="text"
               className="registration-form__control"
             ></input>
