@@ -1,11 +1,10 @@
-// import { useState } from "react";
-// import NotFound from "./NotFound";
 import ArticleRow from "./ArticleRow";
 
 import "./Articles.css";
 
 const ArticlesContainer = (props) => {
   let isHome = props.isHome || false;
+
   // let [error, setError] = useState(null);
 
   // if (error) {

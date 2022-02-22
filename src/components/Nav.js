@@ -27,6 +27,18 @@ const Nav = (props) => {
     </span>
   );
 
+  const loginButton = (
+    <Link to="/login">
+      <button className="header__user-login btn">user login</button>
+    </Link>
+  );
+
+  const userAccountButton = (
+    <Link to="/">
+      <button className="header__user-login btn">user's page</button>
+    </Link>
+  );
+
   return (
     <header className="header">
       <Link to="/">
@@ -34,10 +46,8 @@ const Nav = (props) => {
       </Link>
       <NavDropdown />
       <NavInputField />
-      <Link to="/login">
-        <button className="header__user-login btn">user login</button>
-      </Link>
 
+      {user === "guest" ? loginButton : userAccountButton}
       {user === "guest" ? registrationButton : logoutButton}
 
       <p>Logged in as {user}</p>
