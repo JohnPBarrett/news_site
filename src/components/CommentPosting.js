@@ -4,7 +4,7 @@ import { UserContext } from "../context/UserContext";
 
 const CommentPosting = (props) => {
   let [commentBody, setCommentBody] = useState("");
-  let { user, setUser } = useContext(UserContext);
+  let { user } = useContext(UserContext);
 
   const handleChange = (event) => {
     setCommentBody(event.target.value);
