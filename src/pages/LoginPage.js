@@ -33,17 +33,7 @@ const LoginPage = () => {
               required
             ></input>
           </div>
-          <div className="login-form__group">
-            <label htmlFor="avatar-url" className="login-form__label">
-              avatar url
-            </label>
-            <input
-              id="avatar-url"
-              name="avatar-url"
-              type="text"
-              className="login-form__control"
-            ></input>
-          </div>
+
           <div className="login-form__group">
             <button id="login">login</button>
           </div>

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://nodejs-api-example-5959.herokuapp.com/api",
+  baseURL: "https://nodejs-api-example-5959.herokuapp.com/api"
 });
 
 export const getArticles = async (params) => {
@@ -47,13 +47,18 @@ export const patchCommentVotes = async (comment_id, voteType) => {
   const response = await instance.patch(`/comments/${comment_id}`, vote);
 
   return response.data;
-}
+};
 
 export const postComment = async (article_id, data) => {
   const response = await instance.post(
     `/articles/${article_id}/comments`,
     data
   );
-  console.log(response);
+
   return response;
+};
+
+export const registeruser = async (data) => {
+  const response = await instance.post("/users", data);
+  console.log(response);
 };

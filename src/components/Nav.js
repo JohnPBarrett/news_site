@@ -7,7 +7,7 @@ import { UserContext } from "../context/UserContext";
 import { useContext } from "react";
 
 const Nav = (props) => {
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
   return (
     <header className="header">
       <Link to="/">
@@ -18,7 +18,9 @@ const Nav = (props) => {
       <Link to="/login">
         <button className="header__user-login btn">user login</button>
       </Link>
-      <button className="header__user-sign-up btn">user sign-up</button>
+      <Link to="/register">
+        <button className="header__user-sign-up btn">user sign-up</button>
+      </Link>
       <p>Logged in as {user}</p>
     </header>
   );

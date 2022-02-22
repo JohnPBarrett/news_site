@@ -8,6 +8,7 @@ import IndividualArticlePage from "./pages/IndividualArticlePage";
 import ArticlesPage from "./pages/ArticlesPage";
 import LoginPage from "./pages/LoginPage";
 import { UserContext } from "./context/UserContext";
+import RegistrationPage from "./pages/RegistrationPage";
 
 function App() {
   const [inputFilter, setInputFilter] = useState("");
@@ -27,6 +28,7 @@ function App() {
             />
             <Route path="/articles/:id" element={<IndividualArticlePage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegistrationPage />} />
             <Route component={NotFound} />
           </Routes>
         </div>
