@@ -1,10 +1,12 @@
 import "./RegistrationPage.css";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 import { registeruser } from "../utils/api";
 
 const RegistrationPage = () => {
   const { setUser } = useContext(UserContext);
+  let navigate = useNavigate();
 
   const signUp = async (event) => {
     event.preventDefault();
@@ -15,12 +17,11 @@ const RegistrationPage = () => {
       avatar_url: event.target.avatar_url.value
     };
 
-    console.log(data);
-
     try {
       const response = await registeruser(data);
-      console.log(response);
+
       setUser(data.username);
+      navigate("/");
     } catch (err) {
       console.log(err);
     }

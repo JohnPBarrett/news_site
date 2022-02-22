@@ -27,7 +27,10 @@ function App() {
               element={<ArticlesPage />}
             />
             <Route path="/articles/:id" element={<IndividualArticlePage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/login"
+              element={user === "guest" ? <LoginPage /> : <Navigate to="/" />}
+            />
             <Route
               path="/register"
               element={

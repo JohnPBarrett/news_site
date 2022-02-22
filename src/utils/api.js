@@ -60,5 +60,10 @@ export const postComment = async (article_id, data) => {
 
 export const registeruser = async (data) => {
   const response = await instance.post("/users", data);
-  console.log(response);
+  return response;
+};
+
+export const loginUser = async (data) => {
+  const response = await instance.post("/login", data);
+  return response;
 };

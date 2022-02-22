@@ -9,7 +9,7 @@ import { useContext } from "react";
 const Nav = (props) => {
   const { user, setUser } = useContext(UserContext);
 
-  const logout = (e) => {
+  const logout = () => {
     setUser("guest");
   };
 
@@ -21,7 +21,7 @@ const Nav = (props) => {
 
   const logoutButton = (
     <span>
-      <button className="header__user-log-out btn" onClick={(e) => logout(e)}>
+      <button className="header__user-log-out btn" onClick={() => logout()}>
         Sign out
       </button>
     </span>
