@@ -1,29 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getArticleComments } from "../utils/api";
 import Comment from "./Comment";
 import CommentPosting from "./CommentPosting";
 import "./CommentsContainer.css";
 
 const CommentsContainer = (props) => {
-  const { articleId } = props;
+  const { articleId, setCommentsLoaded } = props;
+  const componentMounted = useRef(true);
 
   let [comments, setComments] = useState([]);
 
   useEffect(() => {
-    // abort controller added to stop memory leaks
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    getArticleComments(articleId, signal)
+    getArticleComments(articleId)
       .then((data) => {
-        setComments(data.comments);
+        if (componentMounted.current) {
+          setComments(data.comments);
+        }
       })
-      .catch(() => {});
-    return () => controller.abort();
-    // .finally(() => {
-    //   props.setCommentsLoaded(true);
-    // });
-  }, [articleId, comments]);
+      .then(() => {
+        setCommentsLoaded(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return () => {
+      componentMounted.current = false;
+    };
+  }, [articleId, setCommentsLoaded]);
 
   return (
     <div className="comment__container">

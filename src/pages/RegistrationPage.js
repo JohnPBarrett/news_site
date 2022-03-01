@@ -18,7 +18,7 @@ const RegistrationPage = () => {
     };
 
     try {
-      const response = await registeruser(data);
+      await registeruser(data);
 
       setUser(data.username);
       navigate("/");

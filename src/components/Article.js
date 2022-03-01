@@ -1,21 +1,28 @@
-import { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import { useState, useEffect, useRef } from "react";
 import { getArticle } from "../utils/api";
 import { convertDate } from "../utils/convertDate";
 import "./Article.css";
 
 const Article = (props) => {
   let [article, setArticle] = useState({});
-
+  const componentMounted = useRef(true);
   let { articleId } = props;
+  const { setArticleLoaded } = props;
 
   useEffect(() => {
-    setArticle([]);
-    getArticle(articleId).then((data) => {
-      setArticle(data.article);
-      props.setArticleLoaded(true);
-    });
-  }, [articleId]);
+    getArticle(articleId)
+      .then((data) => {
+        if (componentMounted.current) {
+          setArticle(data.article);
+        }
+      })
+      .then(() => {
+        setArticleLoaded(true);
+      });
+    return () => {
+      componentMounted.current = false;
+    };
+  }, [articleId, setArticleLoaded]);
 
   return (
     <>
