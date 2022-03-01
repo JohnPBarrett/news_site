@@ -12,14 +12,7 @@ const ArticleRow = (props) => {
         <p className="article__author">Posted by {article.author}</p>
         <p className="article__created">{convertDate(article.created_at)}</p>
       </div>
-      <Link
-        to={
-          props.isHome
-            ? `./articles/${article.article_id}`
-            : `./${article.article_id}`
-        }
-        className="article__title"
-      >
+      <Link to={`/articles/${article.article_id}`} className="article__title">
         {article.title}
       </Link>
       <div className="article__user-feedback">

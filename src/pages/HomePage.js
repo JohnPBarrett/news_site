@@ -22,7 +22,7 @@ const Home = () => {
     <LoadingSpinner />
   ) : (
     <div className="content">
-      <ArticlesContainer articles={articles} isHome={true} />
+      <ArticlesContainer articles={articles} />
     </div>
   );
 };
