@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { getArticle } from '../utils/api';
-import { convertDate } from '../utils/convertDate';
+import convertDate from '../utils/convertDate';
 import './Article.css';
 
 function Article(props) {

@@ -1,4 +1,4 @@
-export const convertDate = (fullDate) => {
+const convertDate = (fullDate) => {
   const parsedDate = new Date(fullDate);
   const monthNames = [
     'January',
@@ -18,3 +18,5 @@ export const convertDate = (fullDate) => {
     monthNames[parsedDate.getMonth()]
   } ${parsedDate.getFullYear()} `;
 };
+
+export default convertDate;

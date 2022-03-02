@@ -10,8 +10,8 @@ export const getArticles = async (params) => {
   return response.data;
 };
 
-export const getArticle = async (article_id) => {
-  const response = await instance.get(`/articles/${article_id}`);
+export const getArticle = async (articleId) => {
+  const response = await instance.get(`/articles/${articleId}`);
   return response.data;
 };
 
@@ -20,37 +20,37 @@ export const getTopics = async () => {
   return response.data;
 };
 
-export const getArticleComments = async (article_id) => {
-  const response = await instance.get(`/articles/${article_id}/comments`);
+export const getArticleComments = async (articleId) => {
+  const response = await instance.get(`/articles/${articleId}/comments`);
   return response.data;
 };
 
-export const patchArticleVotes = async (article_id, voteType) => {
+export const patchArticleVotes = async (articleId, voteType) => {
   const vote = {};
   if (voteType === 'inc') {
     vote.inc_votes = 1;
   } else if (voteType === 'dec') {
     vote.inc_votes = -1;
   }
-  const response = await instance.patch(`/articles/${article_id}`, vote);
+  const response = await instance.patch(`/articles/${articleId}`, vote);
 
   return response.data;
 };
 
-export const patchCommentVotes = async (comment_id, voteType) => {
+export const patchCommentVotes = async (commentId, voteType) => {
   const vote = {};
   if (voteType === 'inc') {
     vote.inc_votes = 1;
   } else if (voteType === 'dec') {
     vote.inc_votes = -1;
   }
-  const response = await instance.patch(`/comments/${comment_id}`, vote);
+  const response = await instance.patch(`/comments/${commentId}`, vote);
 
   return response.data;
 };
 
-export const postComment = async (article_id, data) => {
-  const response = await instance.post(`/articles/${article_id}/comments`, data);
+export const postComment = async (articleId, data) => {
+  const response = await instance.post(`/articles/${articleId}/comments`, data);
 
   return response;
 };

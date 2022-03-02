@@ -4,7 +4,7 @@ import ArticlesContainer from '../components/ArticlesContainer';
 import { getArticles } from '../utils/api';
 import LoaderSpinner from '../utils/LoadingSpinner';
 
-function ArticlesPage(props) {
+function ArticlesPage() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();

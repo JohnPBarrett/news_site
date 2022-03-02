@@ -1,11 +1,13 @@
-import { convertDate } from '../utils/convertDate';
+import convertDate from '../utils/convertDate';
 import Votes from './Votes';
 
 function Comment(props) {
+  const { comments } = props;
+  const randomKey = () => Math.floor(Math.random() * 100000);
   return (
     <>
-      {props.comments.map((comment, idx) => (
-        <div className="comment" key={`${comment.author} ${idx}`}>
+      {comments.map((comment) => (
+        <div className="comment" key={`${comment.author} ${randomKey()}`}>
           <div className="comment__details">
             <div className="comment__author">{comment.author}</div>
 
@@ -13,7 +15,7 @@ function Comment(props) {
           </div>
 
           <div className="comment__body">{comment.body}</div>
-          <Votes id={comment.comment_id} votes={comment.votes} voteType="comment" />
+          <Votes id={comment.comment_id} currentVotes={comment.votes} voteType="comment" />
         </div>
       ))}
     </>

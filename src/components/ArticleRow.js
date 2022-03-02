@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { convertDate } from '../utils/convertDate';
+import convertDate from '../utils/convertDate';
 import Votes from './Votes';
 
 function ArticleRow(props) {

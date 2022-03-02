@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserContext';
 import { loginUser } from '../utils/api';
 
 function LoginPage() {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const login = async (event) => {
@@ -15,7 +15,7 @@ function LoginPage() {
       password: event.target.password.value
     };
     try {
-      const response = await loginUser(data);
+      await loginUser(data);
       setUser(data.username);
       navigate('/');
     } catch (err) {
@@ -53,7 +53,9 @@ function LoginPage() {
           </div>
 
           <div className="login-form__group">
-            <button id="login">login</button>
+            <button type="button" id="login">
+              login
+            </button>
           </div>
         </form>
       </div>

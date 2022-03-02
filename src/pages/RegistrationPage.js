@@ -79,7 +79,9 @@ function RegistrationPage() {
             />
           </div>
           <div className="registration-form__group">
-            <button id="registration">Sign up</button>
+            <button type="button" id="registration">
+              Sign up
+            </button>
           </div>
         </form>
       </div>

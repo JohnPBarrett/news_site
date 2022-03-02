@@ -3,9 +3,10 @@ import ArticleRow from './ArticleRow';
 import './Articles.css';
 
 function ArticlesContainer(props) {
+  const { articles } = props;
   return (
     <>
-      {props.articles.map((article) => (
+      {articles.map((article) => (
         <ArticleRow article={article} key={`${article.article_title}_${article.article_id}`} />
       ))}
     </>

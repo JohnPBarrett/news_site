@@ -5,6 +5,7 @@ import { UserContext } from '../context/UserContext';
 function CommentPosting(props) {
   const [commentBody, setCommentBody] = useState('');
   const { user } = useContext(UserContext);
+  const { articleId } = props;
 
   const handleChange = (event) => {
     setCommentBody(event.target.value);
@@ -19,7 +20,7 @@ function CommentPosting(props) {
     };
 
     setCommentBody('');
-    postComment(props.articleId, data);
+    postComment(articleId, data);
   };
 
   return (
@@ -33,7 +34,7 @@ function CommentPosting(props) {
           onChange={(e) => handleChange(e)}
           required
         />
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

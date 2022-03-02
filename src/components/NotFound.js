@@ -1,4 +1,4 @@
-function NotFound(props) {
+function NotFound() {
   return (
     <div>
       <h1>No articles here...</h1>
