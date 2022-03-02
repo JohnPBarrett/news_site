@@ -1,20 +1,15 @@
-import ArticleRow from "./ArticleRow";
+import ArticleRow from './ArticleRow';
 
-import "./Articles.css";
+import './Articles.css';
 
-const ArticlesContainer = (props) => {
+function ArticlesContainer(props) {
   return (
     <>
-      {props.articles.map((article) => {
-        return (
-          <ArticleRow
-            article={article}
-            key={`${article.article_title}_${article.article_id}`}
-          />
-        );
-      })}
+      {props.articles.map((article) => (
+        <ArticleRow article={article} key={`${article.article_title}_${article.article_id}`} />
+      ))}
     </>
   );
-};
+}
 
 export default ArticlesContainer;

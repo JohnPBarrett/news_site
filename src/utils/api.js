@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: "https://nodejs-api-example-5959.herokuapp.com/api"
+  baseURL: 'https://nodejs-api-example-5959.herokuapp.com/api'
 });
 
 export const getArticles = async (params) => {
@@ -26,10 +26,10 @@ export const getArticleComments = async (article_id) => {
 };
 
 export const patchArticleVotes = async (article_id, voteType) => {
-  let vote = {};
-  if (voteType === "inc") {
+  const vote = {};
+  if (voteType === 'inc') {
     vote.inc_votes = 1;
-  } else if (voteType === "dec") {
+  } else if (voteType === 'dec') {
     vote.inc_votes = -1;
   }
   const response = await instance.patch(`/articles/${article_id}`, vote);
@@ -38,10 +38,10 @@ export const patchArticleVotes = async (article_id, voteType) => {
 };
 
 export const patchCommentVotes = async (comment_id, voteType) => {
-  let vote = {};
-  if (voteType === "inc") {
+  const vote = {};
+  if (voteType === 'inc') {
     vote.inc_votes = 1;
-  } else if (voteType === "dec") {
+  } else if (voteType === 'dec') {
     vote.inc_votes = -1;
   }
   const response = await instance.patch(`/comments/${comment_id}`, vote);
@@ -50,20 +50,17 @@ export const patchCommentVotes = async (comment_id, voteType) => {
 };
 
 export const postComment = async (article_id, data) => {
-  const response = await instance.post(
-    `/articles/${article_id}/comments`,
-    data
-  );
+  const response = await instance.post(`/articles/${article_id}/comments`, data);
 
   return response;
 };
 
 export const registeruser = async (data) => {
-  const response = await instance.post("/users", data);
+  const response = await instance.post('/users', data);
   return response;
 };
 
 export const loginUser = async (data) => {
-  const response = await instance.post("/login", data);
+  const response = await instance.post('/login', data);
   return response;
 };

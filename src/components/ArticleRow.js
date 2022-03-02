@@ -1,9 +1,9 @@
-import { convertDate } from "../utils/convertDate.js";
-import { Link } from "react-router-dom";
-import Votes from "../components/Votes";
+import { Link } from 'react-router-dom';
+import { convertDate } from '../utils/convertDate';
+import Votes from './Votes';
 
-const ArticleRow = (props) => {
-  let { article } = props;
+function ArticleRow(props) {
+  const { article } = props;
 
   return (
     <article className="article" key={`${article.title}-${article.article_id}`}>
@@ -16,17 +16,11 @@ const ArticleRow = (props) => {
         {article.title}
       </Link>
       <div className="article__user-feedback">
-        <Votes
-          id={article.article_id}
-          votes={article.votes}
-          voteType="article"
-        />
-        <div className="article__comments">
-          {article.comment_count} comments
-        </div>
+        <Votes id={article.article_id} votes={article.votes} voteType="article" />
+        <div className="article__comments">{article.comment_count} comments</div>
       </div>
     </article>
   );
-};
+}
 
 export default ArticleRow;

@@ -1,12 +1,12 @@
-import "./IndividualArticlePage.css";
-import { useParams } from "react-router-dom";
-import Article from "../components/Article";
-import CommentsContainer from "../components/CommentsContainer";
-import LoaderSpinner from "../utils/LoadingSpinner";
-import { useState, useEffect } from "react";
+import './IndividualArticlePage.css';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import Article from '../components/Article';
+import CommentsContainer from '../components/CommentsContainer';
+import LoaderSpinner from '../utils/LoadingSpinner';
 
-const IndividualArticlePage = () => {
-  let { id } = useParams();
+function IndividualArticlePage() {
+  const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [articleLoaded, setArticleLoaded] = useState(false);
   const [commentsLoaded, setCommentsLoaded] = useState(false);
@@ -27,13 +27,10 @@ const IndividualArticlePage = () => {
         <Article articleId={id} setArticleLoaded={setArticleLoaded} />
       </div>
       <div className="article-page__comments">
-        <CommentsContainer
-          articleId={id}
-          setCommentsLoaded={setCommentsLoaded}
-        />
+        <CommentsContainer articleId={id} setCommentsLoaded={setCommentsLoaded} />
       </div>
     </main>
   );
-};
+}
 
 export default IndividualArticlePage;

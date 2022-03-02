@@ -1,12 +1,12 @@
-import "./RegistrationPage.css";
-import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
-import { registeruser } from "../utils/api";
+import './RegistrationPage.css';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
+import { registeruser } from '../utils/api';
 
-const RegistrationPage = () => {
+function RegistrationPage() {
   const { setUser } = useContext(UserContext);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const signUp = async (event) => {
     event.preventDefault();
@@ -21,7 +21,7 @@ const RegistrationPage = () => {
       await registeruser(data);
 
       setUser(data.username);
-      navigate("/");
+      navigate('/');
     } catch (err) {
       console.log(err);
     }
@@ -30,11 +30,7 @@ const RegistrationPage = () => {
   return (
     <div className="content">
       <div className="registration-form__container">
-        <form
-          className="registration-form"
-          action="post"
-          onSubmit={(e) => signUp(e)}
-        >
+        <form className="registration-form" action="post" onSubmit={(e) => signUp(e)}>
           <div className="registration-form__group">
             <label htmlFor="username" className="registration-form__label">
               Username *
@@ -45,7 +41,7 @@ const RegistrationPage = () => {
               type="text"
               className="registration-form__control"
               required
-            ></input>
+            />
           </div>
           <div className="registration-form__group">
             <label htmlFor="name" className="registration-form__label">
@@ -57,7 +53,7 @@ const RegistrationPage = () => {
               type="text"
               className="registration-form__control"
               required
-            ></input>
+            />
           </div>
           <div className="registration-form__group">
             <label htmlFor="password" className="registration-form__label">
@@ -69,7 +65,7 @@ const RegistrationPage = () => {
               type="password"
               className="registration-form__control"
               required
-            ></input>
+            />
           </div>
           <div className="registration-form__group">
             <label htmlFor="avatar_url" className="registration-form__label">
@@ -80,7 +76,7 @@ const RegistrationPage = () => {
               name="avatar_url"
               type="text"
               className="registration-form__control"
-            ></input>
+            />
           </div>
           <div className="registration-form__group">
             <button id="registration">Sign up</button>
@@ -89,6 +85,6 @@ const RegistrationPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default RegistrationPage;

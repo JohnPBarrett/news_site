@@ -1,4 +1,4 @@
-const Userpage = () => {
+function Userpage() {
   return (
     <div className="content">
       <main>
@@ -6,6 +6,6 @@ const Userpage = () => {
       </main>
     </div>
   );
-};
+}
 
 export default Userpage;

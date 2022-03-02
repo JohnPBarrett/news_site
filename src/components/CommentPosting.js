@@ -1,10 +1,10 @@
-import { postComment } from "../utils/api";
-import { useState, useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import { useState, useContext } from 'react';
+import { postComment } from '../utils/api';
+import { UserContext } from '../context/UserContext';
 
-const CommentPosting = (props) => {
-  let [commentBody, setCommentBody] = useState("");
-  let { user } = useContext(UserContext);
+function CommentPosting(props) {
+  const [commentBody, setCommentBody] = useState('');
+  const { user } = useContext(UserContext);
 
   const handleChange = (event) => {
     setCommentBody(event.target.value);
@@ -15,10 +15,10 @@ const CommentPosting = (props) => {
 
     const data = {
       username: user,
-      body: commentBody,
+      body: commentBody
     };
 
-    setCommentBody("");
+    setCommentBody('');
     postComment(props.articleId, data);
   };
 
@@ -37,6 +37,6 @@ const CommentPosting = (props) => {
       </form>
     </div>
   );
-};
+}
 
 export default CommentPosting;

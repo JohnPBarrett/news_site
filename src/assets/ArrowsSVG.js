@@ -1,11 +1,11 @@
-import React from "react";
-import { ReactComponent as UpArrow } from "./arrow-up.svg";
-import { ReactComponent as DownArrow } from "./arrow-down.svg";
+import React from 'react';
+import { ReactComponent as UpArrow } from './arrow-up.svg';
+import { ReactComponent as DownArrow } from './arrow-down.svg';
 
-export const UpArrowSVG = (props) => {
+export function UpArrowSVG(props) {
   return <UpArrow className={props.className} />;
-};
+}
 
-export const DownArrowSVG = (props) => {
+export function DownArrowSVG(props) {
   return <DownArrow className={props.className} />;
-};
+}

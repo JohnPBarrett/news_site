@@ -1,5 +1,5 @@
-import { css } from "@emotion/react";
-import { MoonLoader } from "react-spinners";
+import { css } from '@emotion/react';
+import { MoonLoader } from 'react-spinners';
 
 const override = css`
   display: block;
@@ -7,12 +7,12 @@ const override = css`
   border-color: #4661e3;
 `;
 
-const LoaderSpinner = () => {
+function LoaderSpinner() {
   return (
     <div className="sweet-loading">
-      <MoonLoader color={"#599efa"} loading={true} css={override} size={150} />
+      <MoonLoader color="#599efa" loading={true} css={override} size={150} />
     </div>
   );
-};
+}
 
 export default LoaderSpinner;

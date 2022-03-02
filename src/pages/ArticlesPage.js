@@ -1,11 +1,11 @@
-import ArticlesContainer from "../components/ArticlesContainer";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { getArticles } from "../utils/api";
-import LoaderSpinner from "../utils/LoadingSpinner";
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import ArticlesContainer from '../components/ArticlesContainer';
+import { getArticles } from '../utils/api';
+import LoaderSpinner from '../utils/LoadingSpinner';
 
-const ArticlesPage = (props) => {
-  let [articles, setArticles] = useState([]);
+function ArticlesPage(props) {
+  const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
@@ -30,6 +30,6 @@ const ArticlesPage = (props) => {
       <ArticlesContainer articles={articles} />
     </main>
   );
-};
+}
 
 export default ArticlesPage;

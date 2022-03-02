@@ -1,14 +1,14 @@
-import { useState, useEffect, useRef } from "react";
-import { getArticleComments } from "../utils/api";
-import Comment from "./Comment";
-import CommentPosting from "./CommentPosting";
-import "./CommentsContainer.css";
+import { useState, useEffect, useRef } from 'react';
+import { getArticleComments } from '../utils/api';
+import Comment from './Comment';
+import CommentPosting from './CommentPosting';
+import './CommentsContainer.css';
 
-const CommentsContainer = (props) => {
+function CommentsContainer(props) {
   const { articleId, setCommentsLoaded } = props;
   const componentMounted = useRef(true);
 
-  let [comments, setComments] = useState([]);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     getArticleComments(articleId)
@@ -34,6 +34,6 @@ const CommentsContainer = (props) => {
       <Comment comments={comments} />
     </div>
   );
-};
+}
 
 export default CommentsContainer;

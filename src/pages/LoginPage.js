@@ -1,12 +1,12 @@
-import "./LoginPage.css";
-import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
-import { loginUser } from "../utils/api";
-import { useNavigate } from "react-router-dom";
+import './LoginPage.css';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
+import { loginUser } from '../utils/api';
 
-const LoginPage = () => {
+function LoginPage() {
   const { user, setUser } = useContext(UserContext);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const login = async (event) => {
     event.preventDefault();
@@ -17,7 +17,7 @@ const LoginPage = () => {
     try {
       const response = await loginUser(data);
       setUser(data.username);
-      navigate("/");
+      navigate('/');
     } catch (err) {
       console.log(err);
     }
@@ -37,7 +37,7 @@ const LoginPage = () => {
               type="text"
               className="login-form__control"
               required
-            ></input>
+            />
           </div>
           <div className="login-form__group">
             <label htmlFor="password" className="login-form__label">
@@ -49,7 +49,7 @@ const LoginPage = () => {
               type="password"
               className="login-form__control"
               required
-            ></input>
+            />
           </div>
 
           <div className="login-form__group">
@@ -59,6 +59,6 @@ const LoginPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default LoginPage;

@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { getArticles } from "../utils/api";
-import ArticlesContainer from "../components/ArticlesContainer";
-import LoadingSpinner from "../utils/LoadingSpinner";
+import { useEffect, useState } from 'react';
+import { getArticles } from '../utils/api';
+import ArticlesContainer from '../components/ArticlesContainer';
+import LoadingSpinner from '../utils/LoadingSpinner';
 
-const Home = () => {
-  let [articles, setArticles] = useState([]);
+function Home() {
+  const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles("?limit=4&sort_by=created_at")
+    getArticles('?limit=4&sort_by=created_at')
       .then((data) => {
         setArticles(data.articles);
       })
@@ -25,6 +25,6 @@ const Home = () => {
       <ArticlesContainer articles={articles} />
     </div>
   );
-};
+}
 
 export default Home;
