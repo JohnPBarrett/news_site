@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import logo from '../assets/logo.png';
+import logo from '../../assets/logo.png';
 import './Nav.css';
-import { UserContext } from '../context/UserContext';
+import UserContext from '../../context/UserContext';
 
 function Nav() {
   const { user, setUser } = useContext(UserContext);

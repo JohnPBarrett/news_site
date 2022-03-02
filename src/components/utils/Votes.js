@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { UpArrowSVG, DownArrowSVG } from '../assets/ArrowsSVG';
-import { patchArticleVotes, patchCommentVotes } from '../utils/api';
+import { UpArrowSVG, DownArrowSVG } from '../../assets/ArrowsSVG';
+import { patchArticleVotes, patchCommentVotes } from '../../utils/api';
 
 function Votes(props) {
   const { id } = props;

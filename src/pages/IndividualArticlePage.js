@@ -1,8 +1,8 @@
 import './IndividualArticlePage.css';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Article from '../components/Article';
-import CommentsContainer from '../components/CommentsContainer';
+import Article from '../components/articles/Article';
+import CommentsContainer from '../components/comments/CommentsContainer';
 import LoaderSpinner from '../utils/LoadingSpinner';
 
 function IndividualArticlePage() {

@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
-import { postComment } from '../utils/api';
-import { UserContext } from '../context/UserContext';
+import { postComment } from '../../utils/api';
+import UserContext from '../../context/UserContext';
 
 function CommentPosting(props) {
   const [commentBody, setCommentBody] = useState('');

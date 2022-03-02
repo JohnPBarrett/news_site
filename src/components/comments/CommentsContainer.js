@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { getArticleComments } from '../utils/api';
+import { getArticleComments } from '../../utils/api';
 import Comment from './Comment';
 import CommentPosting from './CommentPosting';
 import './CommentsContainer.css';

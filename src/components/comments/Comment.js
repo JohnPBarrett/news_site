@@ -1,5 +1,5 @@
-import convertDate from '../utils/convertDate';
-import Votes from './Votes';
+import convertDate from '../../utils/convertDate';
+import Votes from '../utils/Votes';
 
 function Comment(props) {
   const { comments } = props;

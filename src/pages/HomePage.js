@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getArticles } from '../utils/api';
-import ArticlesContainer from '../components/ArticlesContainer';
+import ArticlesContainer from '../components/articles/ArticlesContainer';
 import LoadingSpinner from '../utils/LoadingSpinner';
 
 function Home() {

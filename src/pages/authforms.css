@@ -1,0 +1,35 @@
+.form__container {
+  background-color: var(--color-primary-dark-1);
+  margin: 2rem auto;
+  color: var(--color-grey-light-1);
+  height: 30vh;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: var(--shadow-light);
+}
+
+.form__label {
+  display: block;
+}
+
+.form__group-button {
+  background-color: var(--color-primary);
+  color: var(--color-grey-light-3);
+  padding: 1.15rem 1rem;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.1s;
+}
+
+.form__group-button:hover {
+  background-color: var(--color-primary-dark-2);
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.form__group-button:active {
+  background-color: var(--color-primary-dark-2);
+  transform: translateY(0.1rem);
+  box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+}

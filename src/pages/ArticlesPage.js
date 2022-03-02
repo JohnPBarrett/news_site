@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import ArticlesContainer from '../components/ArticlesContainer';
+import ArticlesContainer from '../components/articles/ArticlesContainer';
 import { getArticles } from '../utils/api';
 import LoaderSpinner from '../utils/LoadingSpinner';
 

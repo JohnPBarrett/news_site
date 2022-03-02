@@ -1,7 +1,7 @@
-import './LoginPage.css';
+import './authforms.css';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
+import UserContext from '../context/UserContext';
 import { loginUser } from '../utils/api';
 
 function LoginPage() {
@@ -25,35 +25,29 @@ function LoginPage() {
 
   return (
     <div className="content">
-      <div className="login-form__container">
-        <form className="login-form" onSubmit={(e) => login(e)}>
-          <div className="login-form__group">
-            <label htmlFor="username" className="login-form__label">
+      <div className="form__container">
+        <form className="form" onSubmit={(e) => login(e)}>
+          <div className="form__group">
+            <label htmlFor="username" className="form__label">
               Username *
             </label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              className="login-form__control"
-              required
-            />
+            <input id="username" name="username" type="text" className="form__control" required />
           </div>
-          <div className="login-form__group">
-            <label htmlFor="password" className="login-form__label">
+          <div className="form__group">
+            <label htmlFor="password" className="form__label">
               Password *
             </label>
             <input
               id="password"
               name="password"
               type="password"
-              className="login-form__control"
+              className="form__control"
               required
             />
           </div>
 
-          <div className="login-form__group">
-            <button type="button" id="login">
+          <div className="form__group">
+            <button type="button" id="login" className="form__group-button">
               login
             </button>
           </div>

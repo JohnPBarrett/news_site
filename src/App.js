@@ -1,13 +1,13 @@
 import './App.css';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useState } from 'react';
-import Nav from './components/Nav';
+import Nav from './components/nav/Nav';
 import Home from './pages/HomePage';
-import NotFound from './components/NotFound';
+import NotFound from './components/utils/NotFound';
 import IndividualArticlePage from './pages/IndividualArticlePage';
 import ArticlesPage from './pages/ArticlesPage';
 import LoginPage from './pages/LoginPage';
-import { UserContext } from './context/UserContext';
+import UserContext from './context/UserContext';
 import RegistrationPage from './pages/RegistrationPage';
 
 function App() {

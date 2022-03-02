@@ -1,7 +1,7 @@
-import './RegistrationPage.css';
+import './authforms.css';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
+import UserContext from '../context/UserContext';
 import { registeruser } from '../utils/api';
 
 function RegistrationPage() {
@@ -29,56 +29,39 @@ function RegistrationPage() {
 
   return (
     <div className="content">
-      <div className="registration-form__container">
-        <form className="registration-form" action="post" onSubmit={(e) => signUp(e)}>
-          <div className="registration-form__group">
-            <label htmlFor="username" className="registration-form__label">
+      <div className="form__container">
+        <form className="form" action="post" onSubmit={(e) => signUp(e)}>
+          <div className="form__group">
+            <label htmlFor="username" className="form__label">
               Username *
             </label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              className="registration-form__control"
-              required
-            />
+            <input id="username" name="username" type="text" className="form__control" required />
           </div>
-          <div className="registration-form__group">
-            <label htmlFor="name" className="registration-form__label">
+          <div className="form__group">
+            <label htmlFor="name" className="form__label">
               name *
             </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              className="registration-form__control"
-              required
-            />
+            <input id="name" name="name" type="text" className="form__control" required />
           </div>
-          <div className="registration-form__group">
-            <label htmlFor="password" className="registration-form__label">
+          <div className="form__group">
+            <label htmlFor="password" className="form__label">
               Password *
             </label>
             <input
               id="password"
               name="password"
               type="password"
-              className="registration-form__control"
+              className="form__control"
               required
             />
           </div>
-          <div className="registration-form__group">
-            <label htmlFor="avatar_url" className="registration-form__label">
+          <div className="form__group">
+            <label htmlFor="avatar_url" className="form__label">
               avatar url
             </label>
-            <input
-              id="avatar_url"
-              name="avatar_url"
-              type="text"
-              className="registration-form__control"
-            />
+            <input id="avatar_url" name="avatar_url" type="text" className="form__control" />
           </div>
-          <div className="registration-form__group">
+          <div className="form__group">
             <button type="button" id="registration">
               Sign up
             </button>
