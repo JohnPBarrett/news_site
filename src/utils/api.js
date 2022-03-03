@@ -62,5 +62,6 @@ export const registeruser = async (data) => {
 
 export const loginUser = async (data) => {
   const response = await instance.post('/login', data);
+
   return response;
 };

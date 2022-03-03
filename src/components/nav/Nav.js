@@ -48,10 +48,13 @@ function Nav() {
       <Link to="/">
         <img src={logo} alt="logo" className="logo" />
       </Link>
+      <Link to="/articles">
+        <p className="header__articles-link">articles</p>
+      </Link>
       {user === 'guest' ? loginButton : userAccountButton}
       {user === 'guest' ? registrationButton : logoutButton}
 
-      <p>Logged in as {user}</p>
+      <p className="header__current-user">Logged in as {user}</p>
     </header>
   );
 }

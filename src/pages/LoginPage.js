@@ -47,7 +47,7 @@ function LoginPage() {
           </div>
 
           <div className="form__group">
-            <button type="button" id="login" className="form__group-button">
+            <button type="submit" id="login" className="form__group-button">
               login
             </button>
           </div>

@@ -62,7 +62,7 @@ function RegistrationPage() {
             <input id="avatar_url" name="avatar_url" type="text" className="form__control" />
           </div>
           <div className="form__group">
-            <button type="button" id="registration">
+            <button type="submit" id="registration">
               Sign up
             </button>
           </div>

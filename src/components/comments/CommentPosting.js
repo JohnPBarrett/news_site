@@ -5,7 +5,7 @@ import UserContext from '../../context/UserContext';
 function CommentPosting(props) {
   const [commentBody, setCommentBody] = useState('');
   const { user } = useContext(UserContext);
-  const { articleId } = props;
+  const { articleId, setNewComment } = props;
 
   const handleChange = (event) => {
     setCommentBody(event.target.value);
@@ -20,21 +20,31 @@ function CommentPosting(props) {
     };
 
     setCommentBody('');
-    postComment(articleId, data);
+
+    postComment(articleId, data).then(() => {
+      setNewComment(false);
+    });
   };
 
   return (
     <div className="comment__submit-container">
       <form className="comment__submit-form" onSubmit={submitComment}>
-        <input
+        <textarea
           type="text"
           className="comment__submit-input"
           placeholder="What are your thoughts?"
           value={commentBody}
           onChange={(e) => handleChange(e)}
           required
-        />
-        <button type="submit">Submit</button>
+          rows={5}
+        >
+          {' '}
+        </textarea>
+        <div className="comment__submit-form-button-container">
+          <button type="submit" className="comment__submit-form-button btn">
+            Post Comment
+          </button>
+        </div>
       </form>
     </div>
   );

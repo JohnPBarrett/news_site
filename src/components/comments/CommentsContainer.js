@@ -9,8 +9,10 @@ function CommentsContainer(props) {
   const componentMounted = useRef(true);
 
   const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState(true);
 
   useEffect(() => {
+    componentMounted.current = true;
     getArticleComments(articleId)
       .then((data) => {
         if (componentMounted.current) {
@@ -19,6 +21,7 @@ function CommentsContainer(props) {
       })
       .then(() => {
         setCommentsLoaded(true);
+        setNewComment(true);
       })
       .catch((err) => {
         console.log(err);
@@ -26,12 +29,12 @@ function CommentsContainer(props) {
     return () => {
       componentMounted.current = false;
     };
-  }, [articleId, setCommentsLoaded]);
+  }, [articleId, setCommentsLoaded, newComment]);
 
   return (
     <div className="comment__container">
-      <CommentPosting articleId={articleId} />
-      <Comment comments={comments} />
+      <CommentPosting articleId={articleId} comments={comments} setNewComment={setNewComment} />
+      {newComment && <Comment comments={comments} />}
     </div>
   );
 }
