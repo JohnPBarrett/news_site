@@ -11,17 +11,16 @@ import UserContext from './context/UserContext';
 import RegistrationPage from './pages/RegistrationPage';
 
 function App() {
-  const [inputFilter, setInputFilter] = useState('');
   const [user, setUser] = useState('guest');
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <BrowserRouter>
         <div className="container">
-          <Nav setInputFilter={setInputFilter} inputFilter={inputFilter} />
+          <Nav />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/articles" inputFilter={inputFilter} element={<ArticlesPage />} />
+            <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/articles/:id" element={<IndividualArticlePage />} />
             <Route path="/login" element={user === 'guest' ? <LoginPage /> : <Navigate to="/" />} />
             <Route

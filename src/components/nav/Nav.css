@@ -72,6 +72,10 @@
   fill: var(--color-grey-dark-3);
 }
 
+.header__articles-link {
+  font-size: 1.2rem;
+}
+
 .btn {
   background-color: var(--color-primary);
   color: var(--color-grey-light-3);

@@ -1,9 +1,10 @@
 import convertDate from '../../utils/convertDate';
 import Votes from '../utils/Votes';
+import randomKey from '../../utils/randomKeyGenerator';
 
 function Comment(props) {
   const { comments } = props;
-  const randomKey = () => Math.floor(Math.random() * 100000);
+
   return (
     <>
       {comments.map((comment) => (

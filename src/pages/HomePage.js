@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getArticles } from '../utils/api';
-import ArticlesContainer from '../components/articles/ArticlesContainer';
+import ArticleRow from '../components/articles/ArticleRow';
 import LoadingSpinner from '../utils/LoadingSpinner';
 
 function Home() {
@@ -9,7 +9,11 @@ function Home() {
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles('?limit=4&sort_by=created_at')
+    const paramQuery = {
+      limit: 4,
+      sort_by: 'created_at'
+    };
+    getArticles(paramQuery)
       .then((data) => {
         setArticles(data.articles);
       })
@@ -22,7 +26,9 @@ function Home() {
     <LoadingSpinner />
   ) : (
     <div className="content">
-      <ArticlesContainer articles={articles} />
+      {articles.map((article) => (
+        <ArticleRow article={article} key={`${article.article_title}_${article.article_id}`} />
+      ))}
     </div>
   );
 }
