@@ -12,7 +12,7 @@ function ArticlesPage() {
   const [topicFiltered, setTopicFiltered] = useState('');
   const [sorting, setSorting] = useState('');
   const [topics, setTopics] = useState([]);
-
+  const [error, setError] = useState('');
   const sortingValues = [
     {
       name: 'votes',
@@ -30,6 +30,7 @@ function ArticlesPage() {
 
   useEffect(() => {
     setIsLoading(true);
+    setError('');
 
     const params = {};
     if (topicFiltered !== '' && topicFiltered !== 'all') {
@@ -42,8 +43,8 @@ function ArticlesPage() {
       .then((data) => {
         setArticles(data.articles);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setError('Error occured whilst fetching articles');
       })
       .finally(() => {
         setIsLoading(false);
@@ -74,6 +75,7 @@ function ArticlesPage() {
     <>
       <div className="article-page__filters-container">
         <div className="article-page__filter">
+          {error && <h2>{error}</h2>}
           <p>Filter topic</p>
           <ParamDropdown
             values={topics}

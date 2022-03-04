@@ -12,8 +12,10 @@ function CommentsContainer(props) {
 
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
+    setError('');
     componentMounted.current = true;
     getArticleComments(articleId)
       .then((data) => {
@@ -25,8 +27,8 @@ function CommentsContainer(props) {
         setCommentsLoaded(true);
         setNewComment(true);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setError('Error occured whilst fetching comments');
       });
     return () => {
       componentMounted.current = false;
@@ -41,6 +43,7 @@ function CommentsContainer(props) {
 
   return (
     <div className="comment__container">
+      {error && <h2>{error}</h2>}
       {user === 'guest' ? (
         userNotLoggedIn
       ) : (
