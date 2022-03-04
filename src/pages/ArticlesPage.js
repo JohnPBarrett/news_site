@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import ArticleTopicDropdown from '../components/articles/ArticleTopicDropdown';
+import ParamDropdown from '../components/articles/ParamDropdown';
 import ArticleRow from '../components/articles/ArticleRow';
-import { getArticles } from '../utils/api';
+import { getArticles, getTopics } from '../utils/api';
 import LoaderSpinner from '../utils/LoadingSpinner';
 import './ArticlesPage.css';
 import randomKey from '../utils/randomKeyGenerator';
@@ -9,14 +9,15 @@ import randomKey from '../utils/randomKeyGenerator';
 function ArticlesPage() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [topic, setTopic] = useState('');
+  const [topicFiltered, setTopicFiltered] = useState('');
+  const [topics, setTopics] = useState([]);
   const [dropDown, setDropDown] = useState('');
 
   useEffect(() => {
     setIsLoading(true);
     const params = {};
-    if (topic !== '' && topic !== 'all') {
-      params.topic = topic;
+    if (topicFiltered !== '' && topicFiltered !== 'all') {
+      params.topic = topicFiltered;
     }
     getArticles(params)
       .then((data) => {
@@ -30,9 +31,24 @@ function ArticlesPage() {
       });
   }, [dropDown]);
 
+  useEffect(() => {
+    getTopics().then((data) => {
+      setTopics(
+        data.topics.map((topic) => ({
+          value: topic.slug
+        }))
+      );
+    });
+  }, []);
+
   return (
     <>
-      <ArticleTopicDropdown setDropDown={setDropDown} topic={topic} setTopic={setTopic} />
+      <ParamDropdown
+        setDropDown={setDropDown}
+        values={topics}
+        selection={topicFiltered}
+        setSelection={setTopicFiltered}
+      />
       {isLoading ? (
         <LoaderSpinner />
       ) : (
