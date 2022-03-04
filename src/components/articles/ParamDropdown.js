@@ -27,10 +27,10 @@ function ParamDropdown(props) {
         <option value="" disabled>
           Select from below
         </option>
-        <option value="all">Show all</option>
+
         {values.map((currentValue) => (
           <option value={currentValue.value} key={`${currentValue}_${randomKey()}`}>
-            {currentValue.value}
+            {currentValue.name}
           </option>
         ))}
       </select>

@@ -15,18 +15,22 @@ function ArticlesPage() {
 
   const sortingValues = [
     {
+      name: 'votes',
       value: 'votes'
     },
     {
+      name: 'created at',
       value: 'created_at'
     },
     {
+      name: 'comments',
       value: 'comment_count'
     }
   ];
 
   useEffect(() => {
     setIsLoading(true);
+
     const params = {};
     if (topicFiltered !== '' && topicFiltered !== 'all') {
       params.topic = topicFiltered;
@@ -48,11 +52,21 @@ function ArticlesPage() {
 
   useEffect(() => {
     getTopics().then((data) => {
-      setTopics(
-        data.topics.map((topic) => ({
+      const topicValues = [
+        {
+          name: 'show all',
+          value: 'all'
+        }
+      ];
+
+      data.topics.forEach((topic) =>
+        topicValues.push({
+          name: topic.slug,
           value: topic.slug
-        }))
+        })
       );
+
+      setTopics(topicValues);
     });
   }, []);
 
