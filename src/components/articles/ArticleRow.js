@@ -16,7 +16,7 @@ function ArticleRow(props) {
         {article.title}
       </Link>
       <div className="article__user-feedback">
-        <Votes id={article.article_id} votes={article.votes} voteType="article" />
+        <Votes id={article.article_id} currentVotes={article.votes} voteType="article" />
         <div className="article__comments">{article.comment_count} comments</div>
       </div>
     </article>

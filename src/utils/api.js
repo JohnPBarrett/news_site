@@ -5,7 +5,6 @@ const instance = axios.create({
 });
 
 export const getArticles = async (params) => {
-  console.log(params);
   const response = await instance.get(`/articles`, { params });
 
   return response.data;
