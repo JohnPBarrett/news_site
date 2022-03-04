@@ -1,0 +1,25 @@
+.notfound__container {
+  border: 1px solid var(--);
+  height: 50vh;
+  margin: 3rem 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow-light);
+}
+
+.notfound__404-message {
+  font-size: 8rem;
+  font-weight: 700;
+}
+
+.notfound__error-message {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.notfound__link-button {
+  margin-top: 2rem;
+  padding: 1rem;
+}
