@@ -6,10 +6,11 @@ import './Article.css';
 function Article(props) {
   const [article, setArticle] = useState({});
   const componentMounted = useRef(true);
-  const { articleId } = props;
+  const { articleId, setError } = props;
   const { setArticleLoaded } = props;
 
   useEffect(() => {
+    setError('');
     getArticle(articleId)
       .then((data) => {
         if (componentMounted.current) {
@@ -18,6 +19,9 @@ function Article(props) {
       })
       .then(() => {
         setArticleLoaded(true);
+      })
+      .catch(() => {
+        setError('article not found');
       });
     return () => {
       componentMounted.current = false;

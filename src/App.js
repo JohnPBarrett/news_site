@@ -27,7 +27,8 @@ function App() {
               path="/register"
               element={user === 'guest' ? <RegistrationPage /> : <Navigate to="/" />}
             />
-            <Route component={NotFound} />
+
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </BrowserRouter>

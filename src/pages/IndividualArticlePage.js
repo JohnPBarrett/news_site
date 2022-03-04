@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react';
 import Article from '../components/articles/Article';
 import CommentsContainer from '../components/comments/CommentsContainer';
 import LoaderSpinner from '../utils/LoadingSpinner';
+import NotFound from '../components/utils/NotFound';
 
 function IndividualArticlePage() {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [articleLoaded, setArticleLoaded] = useState(false);
   const [commentsLoaded, setCommentsLoaded] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (articleLoaded && commentsLoaded) {
@@ -19,12 +21,16 @@ function IndividualArticlePage() {
     }
   }, [articleLoaded, commentsLoaded]);
 
+  if (error) {
+    return <NotFound />;
+  }
+
   return isLoading ? (
     <LoaderSpinner />
   ) : (
     <main className="content">
       <div className="article-page__container">
-        <Article articleId={id} setArticleLoaded={setArticleLoaded} />
+        <Article setError={setError} articleId={id} setArticleLoaded={setArticleLoaded} />
       </div>
       <div className="article-page__comments">
         <CommentsContainer articleId={id} setCommentsLoaded={setCommentsLoaded} />

@@ -1,7 +1,7 @@
 function NotFound() {
   return (
     <div>
-      <h1>No articles here...</h1>
+      <h1>Something went wrong .</h1>
     </div>
   );
 }
