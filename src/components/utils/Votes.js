@@ -1,50 +1,104 @@
 import { useState } from 'react';
 import { UpArrowSVG, DownArrowSVG } from '../../assets/ArrowsSVG';
 import { patchArticleVotes, patchCommentVotes } from '../../utils/api';
+import './Votes.css';
 
 function Votes(props) {
   const { id } = props;
   const { voteType } = props;
   const { currentVotes } = props;
   const [votes, setVotes] = useState(currentVotes);
+  const errorCommentsMessage = 'error updating comments';
+
+  const increaseVote = (targetId, voteChangeValue, voteChangeType, voteAmount) => {
+    setVotes((current) => current + voteAmount);
+
+    switch (voteChangeType) {
+      case 'article':
+        patchArticleVotes(targetId, voteChangeValue, voteAmount).catch(() => {
+          setVotes((current) => current - voteAmount);
+          return errorCommentsMessage;
+        });
+        break;
+      case 'comment':
+        patchCommentVotes(targetId, voteChangeValue, voteAmount).catch(() => {
+          setVotes((current) => current - voteAmount);
+          return errorCommentsMessage;
+        });
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const decreaseVote = (targetId, voteChangeValue, voteChangeType, voteAmount) => {
+    setVotes((current) => current - voteAmount);
+
+    switch (voteChangeType) {
+      case 'article':
+        patchArticleVotes(targetId, voteChangeValue, voteAmount).catch(() => {
+          setVotes((current) => current + voteAmount);
+          return errorCommentsMessage;
+        });
+        break;
+      case 'comment':
+        patchCommentVotes(targetId, voteChangeValue, voteAmount).catch(() => {
+          setVotes((current) => current + voteAmount);
+          return errorCommentsMessage;
+        });
+
+        break;
+      default:
+        break;
+    }
+  };
 
   const voteChange = (event, voteChangeValue, voteChangeType) => {
-    const { targetid } = event.currentTarget.dataset;
-    if (voteChangeValue === 'inc') {
-      setVotes((current) => current + 1);
+    const target = event.currentTarget;
+    const { targetid } = target.dataset;
+    // event.currentTarget.classList.toggle('active');
 
-      switch (voteChangeType) {
-        case 'article':
-          patchArticleVotes(targetid, voteChangeValue).catch(() => {
-            setVotes((current) => current - 1);
-          });
-          break;
-        case 'comment':
-          patchCommentVotes(targetid, voteChangeValue).catch(() => {
-            setVotes((current) => current - 1);
-          });
-          break;
+    const votesContainer = target.parentNode;
+    let upVoteButton;
+    let downVoteButton;
+    votesContainer.childNodes.forEach((node) => {
+      if (node.classList.contains('arrow-button__up')) {
+        upVoteButton = node;
+      } else if (node.classList.contains('arrow-button__down')) {
+        downVoteButton = node;
+      }
+    });
 
-        default:
-          break;
+    if (votesContainer.classList.contains('voted_on')) {
+      // to handle case where clicking on vote that user has already voted on
+      if (voteChangeValue === 'inc') {
+        if (upVoteButton.classList.contains('active')) {
+          upVoteButton.classList.toggle('active');
+          decreaseVote(targetid, 'dec', voteChangeType, 1);
+          votesContainer.classList.toggle('voted_on');
+        } else {
+          downVoteButton.classList.toggle('active');
+          upVoteButton.classList.toggle('active');
+          increaseVote(targetid, voteChangeValue, voteChangeType, 2);
+        }
+      } else if (downVoteButton.classList.contains('active')) {
+        downVoteButton.classList.toggle('active');
+        increaseVote(targetid, 'inc', voteChangeType, 1);
+        votesContainer.classList.toggle('voted_on');
+      } else {
+        downVoteButton.classList.toggle('active');
+        upVoteButton.classList.toggle('active');
+        decreaseVote(targetid, voteChangeValue, voteChangeType, 2);
       }
     } else {
-      setVotes((current) => current - 1);
-
-      switch (voteChangeType) {
-        case 'article':
-          patchArticleVotes(targetid, voteChangeValue).catch(() => {
-            setVotes((current) => current + 1);
-          });
-          break;
-        case 'comment':
-          patchCommentVotes(targetid, voteChangeValue).catch(() => {
-            setVotes((current) => current + 1);
-          });
-
-          break;
-        default:
-          break;
+      votesContainer.classList.toggle('voted_on');
+      if (voteChangeValue === 'inc') {
+        upVoteButton.classList.toggle('active');
+        increaseVote(targetid, voteChangeValue, voteChangeType, 1);
+      } else {
+        downVoteButton.classList.toggle('active');
+        decreaseVote(targetid, voteChangeValue, voteChangeType, 1);
       }
     }
   };

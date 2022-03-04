@@ -1,0 +1,31 @@
+.votes__container {
+  display: flex;
+  margin-right: 2rem;
+  align-items: center;
+}
+
+.arrow-button {
+  border: none;
+  background-color: inherit;
+  color: inherit;
+}
+
+.arrow-button__up:hover,
+.arrow-button__up.active {
+  color: green;
+}
+
+.arrow-button__down:hover,
+.arrow-button__down.active {
+  color: rgb(255, 81, 0);
+}
+
+.arrow-icon {
+  height: 1rem;
+  width: 1rem;
+  fill: currentColor;
+}
+
+.votes-count {
+  padding: 0 0.5rem;
+}

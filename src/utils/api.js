@@ -25,24 +25,24 @@ export const getArticleComments = async (articleId) => {
   return response.data;
 };
 
-export const patchArticleVotes = async (articleId, voteType) => {
+export const patchArticleVotes = async (articleId, voteType, voteAmount) => {
   const vote = {};
   if (voteType === 'inc') {
-    vote.inc_votes = 1;
+    vote.inc_votes = voteAmount;
   } else if (voteType === 'dec') {
-    vote.inc_votes = -1;
+    vote.inc_votes = -voteAmount;
   }
   const response = await instance.patch(`/articles/${articleId}`, vote);
 
   return response.data;
 };
 
-export const patchCommentVotes = async (commentId, voteType) => {
+export const patchCommentVotes = async (commentId, voteType, voteAmount) => {
   const vote = {};
   if (voteType === 'inc') {
-    vote.inc_votes = 1;
+    vote.inc_votes = voteAmount;
   } else if (voteType === 'dec') {
-    vote.inc_votes = -1;
+    vote.inc_votes = -voteAmount;
   }
   const response = await instance.patch(`/comments/${commentId}`, vote);
 
