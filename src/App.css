@@ -2,20 +2,13 @@
   background-color: var(--color-grey-light-2);
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
   min-height: 80vh;
-  max-width: 120rem;
+  max-width: 100rem;
 }
 
 @media only screen and (min-width: 600px) {
   .container {
-    max-width: 90%;
     margin: 3rem auto;
     border-radius: 3rem;
     padding-bottom: 3rem;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .container {
-    max-width: 2000px;
   }
 }
