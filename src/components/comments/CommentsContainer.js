@@ -1,10 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { getArticleComments } from '../../utils/api';
+import UserContext from '../../context/UserContext';
 import Comment from './Comment';
 import CommentPosting from './CommentPosting';
 import './CommentsContainer.css';
 
 function CommentsContainer(props) {
+  const { user } = useContext(UserContext);
   const { articleId, setCommentsLoaded } = props;
   const componentMounted = useRef(true);
 
@@ -31,9 +33,19 @@ function CommentsContainer(props) {
     };
   }, [articleId, setCommentsLoaded, newComment]);
 
+  const userNotLoggedIn = (
+    <div className="comment__not-logged-in">
+      <div>Log in or sign up to leave a comment</div>
+    </div>
+  );
+
   return (
     <div className="comment__container">
-      <CommentPosting articleId={articleId} comments={comments} setNewComment={setNewComment} />
+      {user === 'guest' ? (
+        userNotLoggedIn
+      ) : (
+        <CommentPosting articleId={articleId} comments={comments} setNewComment={setNewComment} />
+      )}
       {newComment && <Comment comments={comments} />}
     </div>
   );

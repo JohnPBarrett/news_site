@@ -29,6 +29,14 @@
   padding: 0.9rem 0;
 }
 
+.comment__not-logged-in {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+
+
+
 .comment__submit-form {
   margin-bottom: 1.5rem;
   display: flex;
