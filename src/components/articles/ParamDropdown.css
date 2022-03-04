@@ -1,0 +1,13 @@
+.navigation__drop-down {
+  color: inherit;
+  font-size: inherit;
+  min-width: 10rem;
+  border: none;
+  border-radius: 3rem;
+  outline: none;
+}
+
+.navigation {
+  margin-top: 0.5rem;
+  margin-left: -0.3rem;
+}

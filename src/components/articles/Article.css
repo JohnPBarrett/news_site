@@ -1,7 +1,7 @@
 .article-page__container {
   display: flex;
   flex-direction: column;
-  flex: 0 0 90%;
+  flex: 0 0 98%;
 }
 
 .article-page__article {
@@ -29,4 +29,10 @@
 
 .article-page__article__body {
   margin-bottom: 0.5rem;
+}
+
+.article-page__comments {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 98%;
 }

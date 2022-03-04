@@ -30,6 +30,7 @@ function RegistrationPage() {
   return (
     <div className="content">
       <div className="form__container">
+        <h1>Sign up</h1>
         <form className="form" action="post" onSubmit={(e) => signUp(e)}>
           <div className="form__group">
             <label htmlFor="username" className="form__label">
@@ -61,8 +62,8 @@ function RegistrationPage() {
             </label>
             <input id="avatar_url" name="avatar_url" type="text" className="form__control" />
           </div>
-          <div className="form__group">
-            <button type="submit" id="registration">
+          <div className="form__group btn__form-right">
+            <button type="submit" id="registration" className="form__group-button">
               Sign up
             </button>
           </div>

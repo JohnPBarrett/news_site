@@ -1,4 +1,3 @@
-import './IndividualArticlePage.css';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Article from '../components/articles/Article';

@@ -1,6 +1,7 @@
 .votes__container {
   display: flex;
   margin-right: 2rem;
+  margin-top: 1rem;
   align-items: center;
 }
 

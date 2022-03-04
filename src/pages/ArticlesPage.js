@@ -72,9 +72,20 @@ function ArticlesPage() {
 
   return (
     <>
-      <ParamDropdown values={topics} selection={topicFiltered} setSelection={setTopicFiltered} />
-
-      <ParamDropdown values={sortingValues} selection={sorting} setSelection={setSorting} />
+      <div className="article-page__filters-container">
+        <div className="article-page__filter">
+          <p>Filter topic</p>
+          <ParamDropdown
+            values={topics}
+            selection={topicFiltered}
+            setSelection={setTopicFiltered}
+          />
+        </div>
+        <div className="article-page__filter">
+          <p>Sort by:</p>
+          <ParamDropdown values={sortingValues} selection={sorting} setSelection={setSorting} />
+        </div>
+      </div>
       {isLoading ? (
         <LoaderSpinner />
       ) : (

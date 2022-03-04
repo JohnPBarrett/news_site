@@ -5,7 +5,7 @@
 .comment {
   background-color: var(--color-primary-light-1);
   border-radius: 4px;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   box-shadow: var(--shadow-light);
 }
 
@@ -34,8 +34,6 @@
   justify-content: space-between;
   margin: 2rem 0;
 }
-
-
 
 .comment__submit-form {
   margin-bottom: 1.5rem;
@@ -67,4 +65,25 @@
   font-size: 1.5rem;
   border-radius: 0.4rem;
   padding: 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .comment {
+    padding: 2rem;
+    font-size: 1.1rem;
+  }
+  .comment__submit-input {
+    font-size: 1.1rem;
+    margin-top: 2rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .comment,
+  .comment__submit-input {
+    font-size: 1.3rem;
+  }
+  .comment__submit-form-button-container {
+    margin: 1rem 0;
+  }
 }

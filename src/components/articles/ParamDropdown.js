@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import randomKey from '../../utils/randomKeyGenerator';
+import './ParamDropdown.css';
 
 function ParamDropdown(props) {
   const [filterActive, setFilterActive] = useState(false);
@@ -18,7 +19,7 @@ function ParamDropdown(props) {
   };
 
   return (
-    <nav className="navigation">
+    <div className="navigation">
       <select
         className="navigation__drop-down"
         onChange={(e) => changeSelection(e)}
@@ -34,7 +35,7 @@ function ParamDropdown(props) {
           </option>
         ))}
       </select>
-    </nav>
+    </div>
   );
 }
 

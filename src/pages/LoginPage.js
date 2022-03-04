@@ -26,6 +26,7 @@ function LoginPage() {
   return (
     <div className="content">
       <div className="form__container">
+        <h1>Login</h1>
         <form className="form" onSubmit={(e) => login(e)}>
           <div className="form__group">
             <label htmlFor="username" className="form__label">
@@ -46,7 +47,7 @@ function LoginPage() {
             />
           </div>
 
-          <div className="form__group">
+          <div className="form__group btn__form-right">
             <button type="submit" id="login" className="form__group-button">
               login
             </button>

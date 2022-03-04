@@ -23,3 +23,9 @@
   margin-top: 2rem;
   padding: 1rem;
 }
+
+@media only screen and (min-width: 600px) {
+  .notfound__container {
+    margin: 3rem 8rem;
+  }
+}

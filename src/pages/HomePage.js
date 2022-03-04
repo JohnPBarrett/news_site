@@ -10,7 +10,7 @@ function Home() {
   useEffect(() => {
     setIsLoading(true);
     const paramQuery = {
-      limit: 4,
+      limit: 10,
       sort_by: 'created_at'
     };
     getArticles(paramQuery)
