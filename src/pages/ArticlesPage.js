@@ -11,7 +11,6 @@ function ArticlesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [topicFiltered, setTopicFiltered] = useState('');
   const [topics, setTopics] = useState([]);
-  const [dropDown, setDropDown] = useState('');
 
   useEffect(() => {
     setIsLoading(true);
@@ -29,7 +28,7 @@ function ArticlesPage() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [dropDown]);
+  }, [topicFiltered]);
 
   useEffect(() => {
     getTopics().then((data) => {
@@ -43,12 +42,7 @@ function ArticlesPage() {
 
   return (
     <>
-      <ParamDropdown
-        setDropDown={setDropDown}
-        values={topics}
-        selection={topicFiltered}
-        setSelection={setTopicFiltered}
-      />
+      <ParamDropdown values={topics} selection={topicFiltered} setSelection={setTopicFiltered} />
       {isLoading ? (
         <LoaderSpinner />
       ) : (

@@ -3,23 +3,18 @@ import randomKey from '../../utils/randomKeyGenerator';
 
 function ParamDropdown(props) {
   const [filterActive, setFilterActive] = useState(false);
-  const { setDropDown, values, selection, setSelection } = props;
+  const { values, selection, setSelection } = props;
 
   useEffect(() => {
     if (filterActive) {
       setFilterActive(false);
-      if (selection === '') {
-        setDropDown('');
-      } else if (selection !== '') {
-        setDropDown(selection);
-      }
     }
   }, [selection, filterActive]);
 
   const changeSelection = (event) => {
     const filteredValue = event.target.value;
-    setSelection(filteredValue);
     setFilterActive(true);
+    setSelection(filteredValue);
   };
 
   return (
