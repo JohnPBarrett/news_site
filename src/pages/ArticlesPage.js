@@ -10,13 +10,29 @@ function ArticlesPage() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [topicFiltered, setTopicFiltered] = useState('');
+  const [sorting, setSorting] = useState('');
   const [topics, setTopics] = useState([]);
+
+  const sortingValues = [
+    {
+      value: 'votes'
+    },
+    {
+      value: 'created_at'
+    },
+    {
+      value: 'comment_count'
+    }
+  ];
 
   useEffect(() => {
     setIsLoading(true);
     const params = {};
     if (topicFiltered !== '' && topicFiltered !== 'all') {
       params.topic = topicFiltered;
+    }
+    if (sorting !== '' && sorting !== 'all') {
+      params.sort_by = sorting;
     }
     getArticles(params)
       .then((data) => {
@@ -28,7 +44,7 @@ function ArticlesPage() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [topicFiltered]);
+  }, [topicFiltered, sorting]);
 
   useEffect(() => {
     getTopics().then((data) => {
@@ -43,6 +59,8 @@ function ArticlesPage() {
   return (
     <>
       <ParamDropdown values={topics} selection={topicFiltered} setSelection={setTopicFiltered} />
+
+      <ParamDropdown values={sortingValues} selection={sorting} setSelection={setSorting} />
       {isLoading ? (
         <LoaderSpinner />
       ) : (
