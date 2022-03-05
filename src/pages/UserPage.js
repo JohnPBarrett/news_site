@@ -41,38 +41,36 @@ function UserPage() {
   }, [loading, username]);
 
   return (
-    <div className="content">
-      <main>
-        <p className="userpage__user-heading">{username}&apos;s page</p>
-        <div>
-          <ul className="userpage__filter-nav">
-            <li className="userpage__filter-element">
-              <button className="btn" value="articles" type="button" onClick={handleClick}>
-                articles
-              </button>
-            </li>
-            <li className="userpage__filter-element">
-              <button className="btn" value="comments" type="button" onClick={handleClick}>
-                comments
-              </button>
-            </li>
-          </ul>
-        </div>
-        {(() => {
-          if (loading) return <LoaderSpinner />;
-          switch (filter) {
-            case 'articles':
-              return userArticles.map((article) => (
-                <ArticleRow article={article} key={`${article.article_title}_${randomKey()}`} />
-              ));
-            case 'comments':
-              return <p>Comment tests</p>;
-            default:
-              return <p>Something went wrong</p>;
-          }
-        })()}
-      </main>
-    </div>
+    <main className="content">
+      <p className="userpage__user-heading">{username}&apos;s page</p>
+      <div>
+        <ul className="userpage__filter-nav">
+          <li className="userpage__filter-element">
+            <button className="btn" value="articles" type="button" onClick={handleClick}>
+              articles
+            </button>
+          </li>
+          <li className="userpage__filter-element">
+            <button className="btn" value="comments" type="button" onClick={handleClick}>
+              comments
+            </button>
+          </li>
+        </ul>
+      </div>
+      {(() => {
+        if (loading) return <LoaderSpinner />;
+        switch (filter) {
+          case 'articles':
+            return userArticles.map((article) => (
+              <ArticleRow article={article} key={`${article.article_title}_${randomKey()}`} />
+            ));
+          case 'comments':
+            return <p>Comment tests</p>;
+          default:
+            return <p>Something went wrong</p>;
+        }
+      })()}
+    </main>
   );
 }
 
