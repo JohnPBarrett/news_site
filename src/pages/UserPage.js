@@ -58,13 +58,6 @@ function UserPage() {
             </li>
           </ul>
         </div>
-        {/* {loading ? (
-          <LoaderSpinner />
-        ) : (
-          userArticles.map((article) => (
-            <ArticleRow article={article} key={`${article.article_title}_${randomKey()}`} />
-          ))
-        )} */}
         {(() => {
           if (loading) return <LoaderSpinner />;
           switch (filter) {

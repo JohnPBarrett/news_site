@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import convertDate from '../../utils/convertDate';
 import Votes from '../utils/Votes';
 import randomKey from '../../utils/randomKeyGenerator';
@@ -10,7 +11,9 @@ function Comment(props) {
       {comments.map((comment) => (
         <div className="comment" key={`${comment.author} ${randomKey()}`}>
           <div className="comment__details">
-            <div className="comment__author">{comment.author}</div>
+            <div className="comment__author">
+              <Link to={`/user/${comment.author}`}>{comment.author}</Link>
+            </div>
 
             <div className="comment__created-at">Posted {convertDate(comment.created_at)}</div>
           </div>

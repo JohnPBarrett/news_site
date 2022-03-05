@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { getArticle } from '../../utils/api';
 import convertDate from '../../utils/convertDate';
 import './Article.css';
@@ -31,7 +32,9 @@ function Article(props) {
   return (
     <article className="article-page__article">
       <div className="article-page__article__details">
-        <p className="article-page__article__author">Posted by {article.author}</p>
+        <p className="article-page__article__author">
+          Posted by <Link to={`/user/${article.author}`}>{article.author}</Link>
+        </p>
         <p>Posted {convertDate(article.created_at)}</p>
       </div>
       <div className="article-page__article__title">

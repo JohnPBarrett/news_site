@@ -36,7 +36,7 @@ function Nav() {
   );
 
   const userAccountButton = (
-    <Link to="/">
+    <Link to={`/user/${user}`}>
       <button type="button" className="header__user-login btn">
         user&apos;s page
       </button>
