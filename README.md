@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# new_site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Link to deployed version
 
-## Available Scripts
+You can find the latest version of the site [here](https://the-newest-news123.netlify.app/)
 
-In the project directory, you can run:
+## Description
 
-### `npm start`
+This site is meant to replicate the feel of a modern discussion site. It is has been built using a mobile first approach and is repsonsive for mobile, tablets and monitors. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The app is served by a REST api (link to api can be found further below). 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+It has been fully written using ReactJS and CSS3.  
 
-### `npm test`
+## Dependencies 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+* npm 8.x
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* @emotion/react 11.x
+* axios 0.25.x
+* react 17.x
+* react-dom 17.x
+* react-router-dom 6.x
+* react-scripts 5.x
+* react-spinners 0.11.x
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Dev Dependencies
 
-### `npm run eject`
+* eslint 8.x
+* eslint-config-airbnb 19.x
+* eslint-config-prettier 8.x
+* eslint-plugin-import 2.x
+* eslint-plugin-jsx-a11y 6.x
+* eslint-plugin-prettier 4.x
+* eslint-plugin-react 7.x
+* eslint-plugin-react-hooks 4.x
+* prettier 2.x
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Backend-repo
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This app talks to a hosted backend api found [here](https://nodejs-api-example-5959.herokuapp.com/api)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+If you would like to clone the back end and create your own version of a hosted service then please find the github link [here](https://github.com/JohnPBarrett/news_site_api) which will contain instructions on how to install. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Cloning
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    http://localhost:3000/
+    cd news_site
+    npm i
+  
+## Run the app
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ Once app has been installed run: 
+ 
+    npm run start
+    
+This will by default run the app on localhost:3000
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+ 
+  
