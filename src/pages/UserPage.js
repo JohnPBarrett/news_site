@@ -19,16 +19,16 @@ function UserPage() {
     setUserArticles([]);
     const { value } = event.currentTarget;
     setFilter(value);
+    setLoading(true);
   };
 
   useEffect(() => {
-    setLoading(true);
-
     switch (filter) {
       case 'articles':
         getArticles().then(({ articles }) => {
           const filteredArticles = articles.filter((article) => article.author === username);
           setUserArticles(filteredArticles);
+
           setLoading(false);
         });
         break;
@@ -38,7 +38,7 @@ function UserPage() {
       default:
         break;
     }
-  }, [filter]);
+  }, [loading, username]);
 
   return (
     <div className="content">
