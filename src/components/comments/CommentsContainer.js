@@ -9,7 +9,7 @@ function CommentsContainer(props) {
   const { user } = useContext(UserContext);
   const { articleId, setCommentsLoaded } = props;
   const componentMounted = useRef(true);
-
+  const [commentDeleted, setCommentDeleted] = useState(false);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState(true);
   const [error, setError] = useState('');
@@ -35,6 +35,27 @@ function CommentsContainer(props) {
     };
   }, [articleId, setCommentsLoaded, newComment]);
 
+  useEffect(() => {
+    setError('');
+    componentMounted.current = true;
+    getArticleComments(articleId)
+      .then((data) => {
+        if (componentMounted.current) {
+          setComments(data.comments);
+        }
+      })
+      .then(() => {
+        setCommentsLoaded(true);
+        setCommentDeleted(false);
+      })
+      .catch(() => {
+        setError('Error occured whilst deleting comment');
+      });
+    return () => {
+      componentMounted.current = false;
+    };
+  }, [commentDeleted]);
+
   const userNotLoggedIn = (
     <div className="comment__not-logged-in">
       <div>Log in or sign up to leave a comment</div>
@@ -49,7 +70,7 @@ function CommentsContainer(props) {
       ) : (
         <CommentPosting articleId={articleId} comments={comments} setNewComment={setNewComment} />
       )}
-      {newComment && <Comment comments={comments} />}
+      {newComment && <Comment comments={comments} setCommentDeleted={setCommentDeleted} />}
     </div>
   );
 }

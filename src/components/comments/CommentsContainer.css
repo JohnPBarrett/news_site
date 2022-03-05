@@ -29,6 +29,21 @@
   padding: 0.9rem 0;
 }
 
+.comment__interaction-container {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.comment__delete {
+  border: none;
+  background-color: inherit;
+  color: inherit;
+  margin-bottom: -0.1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
 .comment__not-logged-in {
   display: flex;
   justify-content: space-between;

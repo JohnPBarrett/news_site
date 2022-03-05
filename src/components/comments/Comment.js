@@ -1,10 +1,26 @@
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import convertDate from '../../utils/convertDate';
+import { deleteComment } from '../../utils/api';
 import Votes from '../utils/Votes';
 import randomKey from '../../utils/randomKeyGenerator';
+import UserContext from '../../context/UserContext';
 
 function Comment(props) {
-  const { comments } = props;
+  const { user } = useContext(UserContext);
+  const { comments, setCommentDeleted } = props;
+  const [error, setError] = useState('');
+
+  const deleteUserComment = (event) => {
+    setError('');
+    const { commentid } = event.currentTarget.dataset;
+
+    deleteComment(commentid)
+      .then(() => setCommentDeleted(true))
+      .catch(() => {
+        setError('Error in deleting comment');
+      });
+  };
 
   return (
     <>
@@ -19,7 +35,20 @@ function Comment(props) {
           </div>
 
           <div className="comment__body">{comment.body}</div>
-          <Votes id={comment.comment_id} currentVotes={comment.votes} voteType="comment" />
+          <div className="comment__interaction-container">
+            <Votes id={comment.comment_id} currentVotes={comment.votes} voteType="comment" />
+            {error && <div>{error}</div>}
+            {user === comment.author && (
+              <button
+                type="button"
+                className="comment__delete"
+                onClick={deleteUserComment}
+                data-commentid={`${comment.comment_id}`}
+              >
+                delete
+              </button>
+            )}
+          </div>
         </div>
       ))}
     </>

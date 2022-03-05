@@ -79,9 +79,6 @@
   align-items: center;
 }
 
-.article__comments {
-  margin-top: 1.05rem;
-}
 @media only screen and (min-width: 600px) {
   .content,
   .article-page__filters-container {

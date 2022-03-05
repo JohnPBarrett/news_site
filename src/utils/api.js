@@ -60,6 +60,10 @@ export const postComment = async (articleId, data) => {
   return response;
 };
 
+export const deleteComment = async (commentId) => {
+  await instance.delete(`/comments/${commentId}`);
+};
+
 export const registeruser = async (data) => {
   const response = await instance.post('/users', data);
   return response;
