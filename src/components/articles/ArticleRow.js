@@ -10,7 +10,7 @@ function ArticleRow(props) {
       <div className="article__details">
         <p className="article__topic">Topic: {article.topic}</p>
         <p className="article__author">Posted by {article.author}</p>
-        <p className="article__created">{convertDate(article.created_at)}</p>
+        <p className="article__created">Posted {convertDate(article.created_at)}</p>
       </div>
       <Link to={`/articles/${article.article_id}`} className="article__title">
         {article.title}

@@ -32,7 +32,7 @@ function Article(props) {
     <article className="article-page__article">
       <div className="article-page__article__details">
         <p className="article-page__article__author">Posted by {article.author}</p>
-        <p>{convertDate(article.created_at)}</p>
+        <p>Posted {convertDate(article.created_at)}</p>
       </div>
       <div className="article-page__article__title">
         <p>{article.title}</p>

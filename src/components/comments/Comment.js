@@ -12,7 +12,7 @@ function Comment(props) {
           <div className="comment__details">
             <div className="comment__author">{comment.author}</div>
 
-            <div className="comment__created-at">{convertDate(comment.created_at)}</div>
+            <div className="comment__created-at">Posted {convertDate(comment.created_at)}</div>
           </div>
 
           <div className="comment__body">{comment.body}</div>
