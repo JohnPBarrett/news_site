@@ -1,4 +1,5 @@
 import './authforms.css';
+import './LoginPage.css';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../context/UserContext';
@@ -26,7 +27,15 @@ function LoginPage() {
   };
 
   return (
-    <div className="content">
+    <div className="content login__container">
+      <div className="login__test-user-example">
+        <p>
+          If you would like to login as a pre-existing test user then please use the following
+          details:
+        </p>
+        <p>Username: tickle122</p>
+        <p>Password: tickle1221</p>
+      </div>
       <div className="form__container">
         <h1>Login</h1>
         {error && <h2>{error}</h2>}

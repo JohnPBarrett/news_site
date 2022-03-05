@@ -1,0 +1,27 @@
+.login__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.login__test-user-example {
+  background-color: var(--color-grey-light-1);
+  padding: 1rem;
+  text-align: left;
+  font-size: 1rem;
+  max-width: 18rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.login__test-user-example > * {
+  margin: 0.5rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .login__test-user-example {
+    font-size: 1.4rem;
+    max-width: 40rem;
+  }
+}
