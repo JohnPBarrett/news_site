@@ -1,0 +1,16 @@
+.userpage__user-heading {
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 0.8px;
+}
+
+.userpage__filter-nav {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.userpage__filter-element {
+  list-style: none;
+  margin-left: 1rem;
+}

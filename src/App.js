@@ -9,9 +9,10 @@ import ArticlesPage from './pages/ArticlesPage';
 import LoginPage from './pages/LoginPage';
 import UserContext from './context/UserContext';
 import RegistrationPage from './pages/RegistrationPage';
+import UserPage from './pages/UserPage';
 
 function App() {
-  const [user, setUser] = useState('guest');
+  const [user, setUser] = useState('grumpy19');
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -27,7 +28,7 @@ function App() {
               path="/register"
               element={user === 'guest' ? <RegistrationPage /> : <Navigate to="/" />}
             />
-
+            <Route path="/user/:username" element={<UserPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
