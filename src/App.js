@@ -12,7 +12,7 @@ import RegistrationPage from './pages/RegistrationPage';
 import UserPage from './pages/UserPage';
 
 function App() {
-  const [user, setUser] = useState('grumpy19');
+  const [user, setUser] = useState('guest');
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

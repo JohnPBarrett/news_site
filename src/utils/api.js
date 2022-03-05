@@ -20,6 +20,11 @@ export const getTopics = async () => {
   return response.data;
 };
 
+export const getComments = async () => {
+  const response = await instance.get('/comments');
+  return response.data;
+};
+
 export const getArticleComments = async (articleId) => {
   const response = await instance.get(`/articles/${articleId}/comments`);
   return response.data;
