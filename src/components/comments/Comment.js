@@ -7,7 +7,7 @@ import randomKey from '../../utils/randomKeyGenerator';
 import UserContext from '../../context/UserContext';
 
 function Comment(props) {
-  const { user } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
   const { comments, setCommentDeleted } = props;
   const [error, setError] = useState('');
 
@@ -15,7 +15,7 @@ function Comment(props) {
     setError('');
     const { commentid } = event.currentTarget.dataset;
 
-    deleteComment(commentid)
+    deleteComment(commentid, token)
       .then(() => setCommentDeleted(true))
       .catch(() => {
         setError('Error in deleting comment');

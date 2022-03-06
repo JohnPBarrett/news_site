@@ -4,6 +4,7 @@ import UserContext from '../../context/UserContext';
 import Comment from './Comment';
 import CommentPosting from './CommentPosting';
 import './CommentsContainer.css';
+import ParamDropdown from '../articles/ParamDropdown';
 
 function CommentsContainer(props) {
   const { user } = useContext(UserContext);
@@ -12,12 +13,34 @@ function CommentsContainer(props) {
   const [commentDeleted, setCommentDeleted] = useState(false);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState(true);
+  const [sorting, setsorting] = useState('');
   const [error, setError] = useState('');
+  const sortingValues = [
+    {
+      name: 'votes',
+      value: 'votes'
+    },
+    {
+      name: 'created at',
+      value: 'created_at'
+    },
+    {
+      name: 'comments',
+      value: 'comment_count'
+    }
+  ];
 
   useEffect(() => {
     setError('');
+    // Checking that the component is mounted gets rid of memory leaks
     componentMounted.current = true;
-    getArticleComments(articleId)
+
+    const params = {};
+    if (sorting !== '' && sorting !== 'all') {
+      params.sort_by = sorting;
+    }
+
+    getArticleComments(articleId, params)
       .then((data) => {
         if (componentMounted.current) {
           setComments(data.comments);
@@ -33,11 +56,13 @@ function CommentsContainer(props) {
     return () => {
       componentMounted.current = false;
     };
-  }, [articleId, setCommentsLoaded, newComment]);
+  }, [articleId, setCommentsLoaded, newComment, sorting]);
 
+  // This useEffect is to repopulate the page once a comment has been deleted
   useEffect(() => {
     setError('');
     componentMounted.current = true;
+
     getArticleComments(articleId)
       .then((data) => {
         if (componentMounted.current) {
@@ -70,6 +95,10 @@ function CommentsContainer(props) {
       ) : (
         <CommentPosting articleId={articleId} comments={comments} setNewComment={setNewComment} />
       )}
+      <div>
+        <p>Sort by:</p>
+        <ParamDropdown values={sortingValues} selection={sorting} setSelection={setsorting} />
+      </div>
       {newComment && <Comment comments={comments} setCommentDeleted={setCommentDeleted} />}
     </div>
   );

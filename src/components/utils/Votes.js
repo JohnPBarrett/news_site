@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { UpArrowSVG, DownArrowSVG } from '../../assets/ArrowsSVG';
+import UserContext from '../../context/UserContext';
 import { patchArticleVotes, patchCommentVotes } from '../../utils/api';
 import './Votes.css';
 
@@ -9,6 +10,7 @@ function Votes(props) {
   const { currentVotes } = props;
   const [votes, setVotes] = useState(currentVotes);
   const errorCommentsMessage = 'error updating comments';
+  const { user } = useContext(UserContext);
 
   const increaseVote = (targetId, voteChangeValue, voteChangeType, voteAmount) => {
     setVotes((current) => current + voteAmount);
@@ -55,6 +57,9 @@ function Votes(props) {
   };
 
   const voteChange = (event, voteChangeValue, voteChangeType) => {
+    // don't do anything if user isn't logged in
+    if (user === 'guest') return;
+
     const target = event.currentTarget;
     const { targetid } = target.dataset;
     // event.currentTarget.classList.toggle('active');

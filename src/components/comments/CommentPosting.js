@@ -4,7 +4,7 @@ import UserContext from '../../context/UserContext';
 
 function CommentPosting(props) {
   const [commentBody, setCommentBody] = useState('');
-  const { user } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
   const { articleId, setNewComment } = props;
 
   const handleChange = (event) => {
@@ -21,7 +21,7 @@ function CommentPosting(props) {
 
     setCommentBody('');
 
-    postComment(articleId, data).then(() => {
+    postComment(articleId, data, token).then(() => {
       setNewComment(false);
     });
   };

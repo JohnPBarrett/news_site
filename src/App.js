@@ -13,9 +13,10 @@ import UserPage from './pages/UserPage';
 
 function App() {
   const [user, setUser] = useState('guest');
+  const [token, setToken] = useState('');
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, token, setToken }}>
       <BrowserRouter>
         <div className="container">
           <Nav />

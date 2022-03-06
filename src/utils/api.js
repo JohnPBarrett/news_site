@@ -25,8 +25,8 @@ export const getComments = async () => {
   return response.data;
 };
 
-export const getArticleComments = async (articleId) => {
-  const response = await instance.get(`/articles/${articleId}/comments`);
+export const getArticleComments = async (articleId, params) => {
+  const response = await instance.get(`/articles/${articleId}/comments`, { params });
   return response.data;
 };
 
@@ -54,14 +54,22 @@ export const patchCommentVotes = async (commentId, voteType, voteAmount) => {
   return response.data;
 };
 
-export const postComment = async (articleId, data) => {
-  const response = await instance.post(`/articles/${articleId}/comments`, data);
+export const postComment = async (articleId, data, token) => {
+  const response = await instance.post(`/articles/${articleId}/comments`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 
   return response;
 };
 
-export const deleteComment = async (commentId) => {
-  await instance.delete(`/comments/${commentId}`);
+export const deleteComment = async (commentId, token) => {
+  await instance.delete(`/comments/${commentId}`, {
+    headers: {
+      Authorization: `Bearere ${token}`
+    }
+  });
 };
 
 export const registeruser = async (data) => {

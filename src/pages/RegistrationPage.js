@@ -5,7 +5,7 @@ import UserContext from '../context/UserContext';
 import { registeruser } from '../utils/api';
 
 function RegistrationPage() {
-  const { setUser } = useContext(UserContext);
+  const { setUser, setToken } = useContext(UserContext);
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
@@ -20,9 +20,10 @@ function RegistrationPage() {
     };
 
     try {
-      await registeruser(data);
+      const response = await registeruser(data);
 
       setUser(data.username);
+      setToken(response.data.user.token);
       navigate('/');
     } catch (err) {
       setError('Error occured during sign up');
