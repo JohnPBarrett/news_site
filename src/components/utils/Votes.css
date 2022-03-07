@@ -15,6 +15,10 @@
   color: green;
 }
 
+.arrow-button__down {
+  margin-top: 0.1rem;
+}
+
 .arrow-button__down:hover,
 .arrow-button__down.active {
   color: rgb(255, 81, 0);
