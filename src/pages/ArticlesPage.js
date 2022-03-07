@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ParamDropdown from '../components/articles/ParamDropdown';
 import ArticleRow from '../components/articles/ArticleRow';
@@ -6,6 +6,7 @@ import { getArticles, getTopics } from '../utils/api';
 import LoaderSpinner from '../utils/LoadingSpinner';
 import './ArticlesPage.css';
 import randomKey from '../utils/randomKeyGenerator';
+import UserContext from '../context/UserContext';
 
 function ArticlesPage() {
   const [articles, setArticles] = useState([]);
@@ -14,6 +15,7 @@ function ArticlesPage() {
   const [sorting, setSorting] = useState('');
   const [topics, setTopics] = useState([]);
   const [error, setError] = useState('');
+  const { user } = useContext(UserContext);
   const sortingValues = [
     {
       name: 'votes',
@@ -75,7 +77,6 @@ function ArticlesPage() {
   return (
     <>
       <div className="article-page__filters-container">
-        <Link to="/articles/new">HI</Link>
         <div className="article-page__filter">
           {error && <h2>{error}</h2>}
           <p>Filter topic</p>
@@ -90,6 +91,18 @@ function ArticlesPage() {
           <ParamDropdown values={sortingValues} selection={sorting} setSelection={setSorting} />
         </div>
       </div>
+
+      <div className="article-page__create-article-link-container">
+        {user === 'guest' ? (
+          <>
+            <Link to="/login">Login</Link>&nbsp;or&nbsp;<Link to="/signup">Signup</Link>
+            &nbsp;to&nbsp;post&nbsp;an&nbsp;article{' '}
+          </>
+        ) : (
+          <Link to="/articles/new">Post new article</Link>
+        )}
+      </div>
+
       {isLoading ? (
         <LoaderSpinner />
       ) : (

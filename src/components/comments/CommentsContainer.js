@@ -79,7 +79,7 @@ function CommentsContainer(props) {
 
   const userNotLoggedIn = (
     <div className="comment__not-logged-in">
-      <div>Log in or sign up to leave a comment</div>
+      <div>Login or Signup to leave a comment</div>
     </div>
   );
 

@@ -11,6 +11,7 @@ import UserContext from './context/UserContext';
 import RegistrationPage from './pages/RegistrationPage';
 import UserPage from './pages/UserPage';
 import CreateArticlePage from './pages/CreateArticlePage';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 function App() {
   const [user, setUser] = useState('guest');
@@ -25,7 +26,14 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/articles/:id" element={<IndividualArticlePage />} />
-            <Route path="/articles/new" element={<CreateArticlePage />} />
+            <Route
+              path="/articles/new"
+              element={
+                <PrivateRoute>
+                  <CreateArticlePage />
+                </PrivateRoute>
+              }
+            />
             <Route path="/login" element={user === 'guest' ? <LoginPage /> : <Navigate to="/" />} />
             <Route
               path="/register"

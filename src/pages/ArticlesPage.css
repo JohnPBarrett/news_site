@@ -79,6 +79,13 @@
   align-items: center;
 }
 
+.article-page__create-article-link-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 0.7rem;
+  font-size: 1rem;
+}
+
 @media only screen and (min-width: 600px) {
   .content,
   .article-page__filters-container {
@@ -91,6 +98,9 @@
   }
   .article:not(:last-child) {
     margin-bottom: 2.5rem;
+  }
+  .article-page__create-article-link-container {
+    margin-right: 3.9rem;
   }
 }
 
