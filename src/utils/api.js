@@ -30,6 +30,16 @@ export const getArticleComments = async (articleId, params) => {
   return response.data;
 };
 
+export const postArticle = async (data, token) => {
+  const response = await instance.post(`/articles`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  return response.data;
+};
+
 export const patchArticleVotes = async (articleId, voteType, voteAmount) => {
   const vote = {};
   if (voteType === 'inc') {

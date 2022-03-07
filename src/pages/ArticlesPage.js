@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ParamDropdown from '../components/articles/ParamDropdown';
 import ArticleRow from '../components/articles/ArticleRow';
 import { getArticles, getTopics } from '../utils/api';
@@ -74,6 +75,7 @@ function ArticlesPage() {
   return (
     <>
       <div className="article-page__filters-container">
+        <Link to="/articles/new">HI</Link>
         <div className="article-page__filter">
           {error && <h2>{error}</h2>}
           <p>Filter topic</p>
