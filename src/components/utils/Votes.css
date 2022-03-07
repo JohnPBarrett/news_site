@@ -21,9 +21,11 @@
 }
 
 .arrow-icon {
-  height: 1rem;
+  height: 0.9rem;
   width: 1rem;
   fill: currentColor;
+  display: inline-flex;
+  align-items: center;
 }
 
 .votes-count {

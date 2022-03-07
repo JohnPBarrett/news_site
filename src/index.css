@@ -1,5 +1,5 @@
 :root {
-  --color-primary: rgb(89, 158, 250);
+  --color-primary: #599efa;
   --color-primary-light-1: rgb(70, 179, 227);
   --color-primary-light-2: #4ef6fd;
   --color-primary-dark-1: #4661e3;
@@ -10,7 +10,7 @@
   --color-grey-light-3: #f0eeee;
   --color-grey-light-4: #ccc;
 
-  --color-grey-dark-1: #333;
+  --color-grey-dark-1: #0d0d0d;
   --color-grey-dark-2: #777;
   --color-grey-dark-3: #999;
 
