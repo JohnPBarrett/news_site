@@ -23,10 +23,6 @@ function CommentsContainer(props) {
     {
       name: 'created at',
       value: 'created_at'
-    },
-    {
-      name: 'comments',
-      value: 'comment_count'
     }
   ];
 
