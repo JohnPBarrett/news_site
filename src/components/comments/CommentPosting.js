@@ -31,7 +31,7 @@ function CommentPosting(props) {
       <form className="comment__submit-form" onSubmit={submitComment}>
         <textarea
           type="text"
-          className="comment__submit-input"
+          className="form__text-area"
           placeholder="What are your thoughts?"
           value={commentBody}
           onChange={(e) => handleChange(e)}

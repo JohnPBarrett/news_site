@@ -1,0 +1,13 @@
+.create-article__title {
+  width: 100%;
+}
+
+.create-article__body {
+  min-width: 10rem;
+}
+
+@media only screen and (min-width: 400px) {
+  .create-article__body {
+    min-width: 30rem;
+  }
+}
