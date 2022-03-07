@@ -9,8 +9,10 @@ export default function CreateArticlePage() {
   const [topics, setTopics] = useState([]);
   const [topicBody, setTopicBody] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [title, setTitle] = useState('');
   const { user, token } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const [articleTopic, setArticleTopic] = useState('');
@@ -21,6 +23,7 @@ export default function CreateArticlePage() {
 
   const submitPost = async (event) => {
     event.preventDefault();
+    setError('');
     setLoading(true);
     const data = {
       title,
@@ -33,8 +36,8 @@ export default function CreateArticlePage() {
       .then(() => {
         navigate('/');
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setError('Failed to create article');
       })
       .finally(() => {
         setLoading(false);
@@ -59,6 +62,7 @@ export default function CreateArticlePage() {
   return (
     <main className="content">
       <div className="form__container">
+        {error && <div>{error}</div>}
         <form className="form" onSubmit={submitPost}>
           <div className="form__group">
             <label htmlFor="title" className="form__label">
