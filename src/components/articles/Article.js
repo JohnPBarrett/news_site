@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { getArticle } from '../../utils/api';
+import { useState, useEffect, useRef, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import UserContext from '../../context/UserContext';
+import { getArticle, deleteArticle } from '../../utils/api';
 import convertDate from '../../utils/convertDate';
 import './Article.css';
 
@@ -9,6 +10,21 @@ function Article(props) {
   const componentMounted = useRef(true);
   const { articleId, setError } = props;
   const { setArticleLoaded } = props;
+  const { user, token } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  const deleteUserArticle = async (event) => {
+    setError('');
+    const { articleid } = event.currentTarget.dataset;
+    try {
+      await deleteArticle(articleid, token);
+    } catch (err) {
+      setError('error in deleting article');
+    } finally {
+      navigate('/');
+    }
+  };
 
   useEffect(() => {
     setError('');
@@ -44,11 +60,23 @@ function Article(props) {
         <p>{article.body}</p>
       </div>
 
-      <div className="article-page__article__total-comments">
-        <p>
-          {article.comment_count} comment
-          {article.comment_count === 1 ? '' : 's'}
-        </p>
+      <div className="article-page__article__info-container">
+        <div className="article-page__article__total-comments">
+          <p>
+            {article.comment_count} comment
+            {article.comment_count === 1 ? '' : 's'}
+          </p>
+        </div>
+        {user && (
+          <button
+            type="button"
+            className="article-page__delete"
+            onClick={deleteUserArticle}
+            data-articleid={`${articleId}`}
+          >
+            delete article
+          </button>
+        )}
       </div>
     </article>
   );

@@ -96,7 +96,7 @@ function ArticlesPage() {
         {user === 'guest' ? (
           <>
             <Link to="/login">Login</Link>&nbsp;or&nbsp;<Link to="/signup">Signup</Link>
-            &nbsp;to&nbsp;post&nbsp;an&nbsp;article{' '}
+            &nbsp;to&nbsp;post&nbsp;an&nbsp;article
           </>
         ) : (
           <Link to="/articles/new">Post new article</Link>

@@ -84,7 +84,7 @@
   display: flex;
   justify-content: flex-end;
   margin-right: 0.7rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 @media only screen and (min-width: 600px) {
@@ -101,7 +101,9 @@
     margin-bottom: 2.5rem;
   }
   .article-page__create-article-link-container {
-    margin-right: 3.9rem;
+    margin: 2rem 3.9rem 1rem 0;
+
+    font-size: 1.4rem;
   }
 }
 

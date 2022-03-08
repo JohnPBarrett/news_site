@@ -4,7 +4,7 @@
 
 .comment {
   border: 1px solid var(--color-primary-light-1);
-  background-color: var(--color-grey-light-2);
+  background-color: var(--color-grey-light-1);
   border-radius: 4px;
   padding: 1rem 1.5rem;
   box-shadow: var(--shadow-light);
@@ -40,8 +40,9 @@
   border: none;
   background-color: inherit;
   color: inherit;
+  font-family: inherit;
+  font-size: inherit;
   margin-bottom: -0.1rem;
-  font-weight: 400;
   line-height: 1.6;
   cursor: pointer;
 }

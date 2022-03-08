@@ -15,6 +15,14 @@ export const getArticle = async (articleId) => {
   return response.data;
 };
 
+export const deleteArticle = async (articleId, token) => {
+  await instance.delete(`/articles/${articleId}`, {
+    headers: {
+      Authorization: `Bearere ${token}`
+    }
+  });
+};
+
 export const getTopics = async () => {
   const response = await instance.get(`/topics`);
   return response.data;

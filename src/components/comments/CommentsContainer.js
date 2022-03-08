@@ -91,7 +91,7 @@ function CommentsContainer(props) {
       ) : (
         <CommentPosting articleId={articleId} comments={comments} setNewComment={setNewComment} />
       )}
-      <div>
+      <div className="article-page__dropdowns">
         <p>Sort by:</p>
         <ParamDropdown values={sortingValues} selection={sorting} setSelection={setsorting} />
       </div>
