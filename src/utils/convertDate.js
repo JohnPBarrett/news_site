@@ -3,7 +3,7 @@ const relativeTimeConverter = (timeVal) => {
   if (timeVal < 3600)
     return `${Math.floor(timeVal / 60)} minute${Math.floor(timeVal / 60) > 1 ? 's' : ''} ago`;
   if (timeVal < 86400)
-    return `${Math.floor(timeVal / 3600)} hour${Math.floor(timeVal / 3600) ? 's' : ''} ago`;
+    return `${Math.floor(timeVal / 3600)} hour${Math.floor(timeVal / 3600) > 1 ? 's' : ''} ago`;
   return false;
 };
 

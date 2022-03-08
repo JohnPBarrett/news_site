@@ -1,0 +1,13 @@
+.pagebutton__container {
+  display: flex;
+}
+
+.pagebutton__button {
+  margin-right: 1rem;
+  border-radius: 1rem;
+  padding: 0.3rem 1.2rem;
+}
+
+.pagebutton__button-active {
+  background-color: var(--color-primary-dark-1);
+}

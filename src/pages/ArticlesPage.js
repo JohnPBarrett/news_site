@@ -7,6 +7,7 @@ import LoaderSpinner from '../utils/LoadingSpinner';
 import './ArticlesPage.css';
 import randomKey from '../utils/randomKeyGenerator';
 import UserContext from '../context/UserContext';
+import PageButton from '../components/utils/PageButton';
 
 function ArticlesPage() {
   const [articles, setArticles] = useState([]);
@@ -14,8 +15,11 @@ function ArticlesPage() {
   const [topicFiltered, setTopicFiltered] = useState('');
   const [sorting, setSorting] = useState('');
   const [topics, setTopics] = useState([]);
+  const [pageButtonsLength, setPageButtonsLength] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [error, setError] = useState('');
   const { user } = useContext(UserContext);
+
   const sortingValues = [
     {
       name: 'votes',
@@ -42,9 +46,14 @@ function ArticlesPage() {
     if (sorting !== '' && sorting !== 'all') {
       params.sort_by = sorting;
     }
+    params.p = currentPage;
     getArticles(params)
       .then((data) => {
         setArticles(data.articles);
+        if (data.articles.length === 0) setPageButtonsLength(1);
+        else {
+          setPageButtonsLength(Math.ceil(data.articles[0].total_count / 10));
+        }
       })
       .catch(() => {
         setError('Error occured whilst fetching articles');
@@ -52,7 +61,7 @@ function ArticlesPage() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [topicFiltered, sorting]);
+  }, [topicFiltered, sorting, currentPage]);
 
   useEffect(() => {
     getTopics().then((data) => {
@@ -73,6 +82,10 @@ function ArticlesPage() {
       setTopics(topicValues);
     });
   }, []);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [topicFiltered]);
 
   return (
     <>
@@ -110,6 +123,11 @@ function ArticlesPage() {
           {articles.map((article) => (
             <ArticleRow article={article} key={`${article.article_title}_${randomKey()}`} />
           ))}
+          <PageButton
+            pageButtonsLength={pageButtonsLength}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         </main>
       )}
     </>
