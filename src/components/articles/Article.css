@@ -6,9 +6,11 @@
 
 .article-page__article {
   padding: 1rem 2rem;
-  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  background-color: white;
   color: var(--color-grey-dark-1);
   border-radius: 10px;
+  box-shadow: 0 1rem 0.9rem rgba(0, 0, 0, 0.089);
 }
 .article-page__article__details {
   display: flex;
