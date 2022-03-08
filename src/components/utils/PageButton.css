@@ -11,3 +11,11 @@
 .pagebutton__button-active {
   background-color: var(--color-primary-dark-1);
 }
+
+@media only screen and (min-width: 600px) {
+  .pagebutton__button {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+  }
+}

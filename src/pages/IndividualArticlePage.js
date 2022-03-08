@@ -10,6 +10,7 @@ function IndividualArticlePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [articleLoaded, setArticleLoaded] = useState(false);
   const [commentsLoaded, setCommentsLoaded] = useState(false);
+  const [pageButtonsLength, setPageButtonsLength] = useState(1);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -29,10 +30,19 @@ function IndividualArticlePage() {
   ) : (
     <main className="content">
       <div className="article-page__container">
-        <Article setError={setError} articleId={id} setArticleLoaded={setArticleLoaded} />
+        <Article
+          setError={setError}
+          articleId={id}
+          setArticleLoaded={setArticleLoaded}
+          setPageButtonsLength={setPageButtonsLength}
+        />
       </div>
       <div className="article-page__comments">
-        <CommentsContainer articleId={id} setCommentsLoaded={setCommentsLoaded} />
+        <CommentsContainer
+          articleId={id}
+          setCommentsLoaded={setCommentsLoaded}
+          pageButtonsLength={pageButtonsLength}
+        />
       </div>
     </main>
   );

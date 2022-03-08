@@ -9,7 +9,7 @@ function Article(props) {
   const [article, setArticle] = useState({});
   const componentMounted = useRef(true);
   const { articleId, setError } = props;
-  const { setArticleLoaded } = props;
+  const { setArticleLoaded, setPageButtonsLength } = props;
   const { user, token } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -32,6 +32,7 @@ function Article(props) {
       .then((data) => {
         if (componentMounted.current) {
           setArticle(data.article);
+          setPageButtonsLength(Math.ceil(data.article.comment_count / 10));
         }
       })
       .then(() => {
@@ -67,7 +68,7 @@ function Article(props) {
             {article.comment_count === 1 ? '' : 's'}
           </p>
         </div>
-        {user && (
+        {user !== 'guest' && (
           <button
             type="button"
             className="article-page__delete"

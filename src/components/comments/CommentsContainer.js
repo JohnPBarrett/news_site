@@ -5,16 +5,19 @@ import Comment from './Comment';
 import CommentPosting from './CommentPosting';
 import './CommentsContainer.css';
 import ParamDropdown from '../articles/ParamDropdown';
+import PageButton from '../utils/PageButton';
 
 function CommentsContainer(props) {
   const { user } = useContext(UserContext);
-  const { articleId, setCommentsLoaded } = props;
+  const { articleId, setCommentsLoaded, pageButtonsLength } = props;
   const componentMounted = useRef(true);
   const [commentDeleted, setCommentDeleted] = useState(false);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState(true);
   const [sorting, setsorting] = useState('');
   const [error, setError] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+
   const sortingValues = [
     {
       name: 'votes',
@@ -35,6 +38,7 @@ function CommentsContainer(props) {
     if (sorting !== '' && sorting !== 'all') {
       params.sort_by = sorting;
     }
+    params.p = currentPage;
 
     getArticleComments(articleId, params)
       .then((data) => {
@@ -52,14 +56,20 @@ function CommentsContainer(props) {
     return () => {
       componentMounted.current = false;
     };
-  }, [articleId, setCommentsLoaded, newComment, sorting]);
+  }, [articleId, setCommentsLoaded, newComment, sorting, currentPage]);
 
   // This useEffect is to repopulate the page once a comment has been deleted
   useEffect(() => {
     setError('');
     componentMounted.current = true;
 
-    getArticleComments(articleId)
+    const params = {};
+    if (sorting !== '' && sorting !== 'all') {
+      params.sort_by = sorting;
+    }
+    params.p = currentPage;
+
+    getArticleComments(articleId, params)
       .then((data) => {
         if (componentMounted.current) {
           setComments(data.comments);
@@ -84,19 +94,27 @@ function CommentsContainer(props) {
   );
 
   return (
-    <div className="comment__container">
-      {error && <h2>{error}</h2>}
-      {user === 'guest' ? (
-        userNotLoggedIn
-      ) : (
-        <CommentPosting articleId={articleId} comments={comments} setNewComment={setNewComment} />
-      )}
-      <div className="article-page__dropdowns">
-        <p>Sort by:</p>
-        <ParamDropdown values={sortingValues} selection={sorting} setSelection={setsorting} />
+    <>
+      {' '}
+      <div className="comment__container">
+        {error && <h2>{error}</h2>}
+        {user === 'guest' ? (
+          userNotLoggedIn
+        ) : (
+          <CommentPosting articleId={articleId} comments={comments} setNewComment={setNewComment} />
+        )}
+        <div className="article-page__dropdowns">
+          <p>Sort by:</p>
+          <ParamDropdown values={sortingValues} selection={sorting} setSelection={setsorting} />
+        </div>
+        {newComment && <Comment comments={comments} setCommentDeleted={setCommentDeleted} />}
+        <PageButton
+          pageButtonsLength={pageButtonsLength}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
-      {newComment && <Comment comments={comments} setCommentDeleted={setCommentDeleted} />}
-    </div>
+    </>
   );
 }
 

@@ -12,6 +12,7 @@ export default function PageButton(props) {
 
   const handlePageChange = (event) => {
     setCurrentPage(+event.currentTarget.value);
+    window.scrollTo(0, 0);
   };
 
   return (
