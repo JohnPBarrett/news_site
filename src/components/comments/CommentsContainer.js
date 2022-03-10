@@ -20,14 +20,41 @@ function CommentsContainer(props) {
 
   const sortingValues = [
     {
-      name: 'votes',
-      value: 'votes'
+      name: 'most votes',
+      value: 'most-votes'
     },
     {
-      name: 'created at',
-      value: 'created_at'
+      name: 'least votes',
+      value: 'least-votes'
+    },
+    {
+      name: 'recent comments',
+      value: 'recent-comments'
+    },
+    {
+      name: 'oldest comments',
+      value: 'oldest-comments'
     }
   ];
+
+  const sortingMap = {
+    'most-votes': {
+      sort_by: 'votes',
+      order: 'desc'
+    },
+    'least-votes': {
+      sort_by: 'votes',
+      order: 'asc'
+    },
+    'recent-comments': {
+      sort_by: 'created_at',
+      order: 'desc'
+    },
+    'oldest-comments': {
+      sort_by: 'created_at',
+      order: 'asc'
+    }
+  };
 
   useEffect(() => {
     setError('');
@@ -36,7 +63,9 @@ function CommentsContainer(props) {
 
     const params = {};
     if (sorting !== '' && sorting !== 'all') {
-      params.sort_by = sorting;
+      const sortingParams = sortingMap[sorting];
+      params.sort_by = sortingParams.sort_by;
+      params.order = sortingParams.order;
     }
     params.p = currentPage;
 
