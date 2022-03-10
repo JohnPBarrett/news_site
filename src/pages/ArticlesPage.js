@@ -22,18 +22,57 @@ function ArticlesPage() {
 
   const sortingValues = [
     {
-      name: 'votes',
-      value: 'votes'
+      name: 'most recent articles',
+      value: 'most-recent-articles'
     },
     {
-      name: 'created at',
-      value: 'created_at'
+      name: 'oldest articles',
+      value: 'oldest-articles'
     },
     {
-      name: 'comments',
-      value: 'comment_count'
+      name: 'most votes',
+      value: 'most-votes'
+    },
+    {
+      name: 'least votes',
+      value: 'least-votes'
+    },
+    {
+      name: 'most comments',
+      value: 'most-comments'
+    },
+    {
+      name: 'least comments',
+      value: 'least-comments'
     }
   ];
+
+  const sortingMap = {
+    'most-recent-articles': {
+      sort_by: 'created_at',
+      order: 'desc'
+    },
+    'oldest-articles': {
+      sort_by: 'created_at',
+      order: 'asc'
+    },
+    'most-votes': {
+      sort_by: 'votes',
+      order: 'desc'
+    },
+    'least-votes': {
+      sort_by: 'votes',
+      order: 'asc'
+    },
+    'most-comments': {
+      sort_by: 'comment_count',
+      order: 'desc'
+    },
+    'least-comments': {
+      sort_by: 'comment_count',
+      order: 'asc'
+    }
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -44,7 +83,9 @@ function ArticlesPage() {
       params.topic = topicFiltered;
     }
     if (sorting !== '' && sorting !== 'all') {
-      params.sort_by = sorting;
+      const sortingParams = sortingMap[sorting];
+      params.sort_by = sortingParams.sort_by;
+      params.order = sortingParams.order;
     }
     params.p = currentPage;
     getArticles(params)
