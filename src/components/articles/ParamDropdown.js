@@ -13,9 +13,9 @@ function ParamDropdown(props) {
   }, [selection, filterActive]);
 
   const changeSelection = (event) => {
-    const filteredValue = event.target.value;
+    const { value } = event.target;
     setFilterActive(true);
-    setSelection(filteredValue);
+    setSelection(value);
   };
 
   return (

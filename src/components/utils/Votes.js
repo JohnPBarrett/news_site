@@ -62,7 +62,6 @@ function Votes(props) {
 
     const target = event.currentTarget;
     const { targetid } = target.dataset;
-    // event.currentTarget.classList.toggle('active');
 
     const votesContainer = target.parentNode;
     let upVoteButton;
