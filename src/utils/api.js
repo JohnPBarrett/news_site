@@ -48,14 +48,18 @@ export const postArticle = async (data, token) => {
   return response.data;
 };
 
-export const patchArticleVotes = async (articleId, voteType, voteAmount) => {
-  const vote = {};
+export const patchArticleVotes = async (articleId, voteType, voteAmount, username, token) => {
+  const vote = { username };
   if (voteType === 'inc') {
     vote.inc_votes = voteAmount;
   } else if (voteType === 'dec') {
     vote.inc_votes = -voteAmount;
   }
-  const response = await instance.patch(`/articles/${articleId}`, vote);
+  const response = await instance.patch(`/articles/${articleId}`, vote, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 
   return response.data;
 };
