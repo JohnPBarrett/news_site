@@ -10,20 +10,20 @@ function Votes(props) {
   const { currentVotes } = props;
   const [votes, setVotes] = useState(currentVotes);
   const errorCommentsMessage = 'error updating comments';
-  const { user } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
 
   const increaseVote = (targetId, voteChangeValue, voteChangeType, voteAmount) => {
     setVotes((current) => current + voteAmount);
 
     switch (voteChangeType) {
       case 'article':
-        patchArticleVotes(targetId, voteChangeValue, voteAmount).catch(() => {
+        patchArticleVotes(targetId, voteChangeValue, voteAmount, user, token).catch(() => {
           setVotes((current) => current - voteAmount);
           return errorCommentsMessage;
         });
         break;
       case 'comment':
-        patchCommentVotes(targetId, voteChangeValue, voteAmount).catch(() => {
+        patchCommentVotes(targetId, voteChangeValue, voteAmount, user, token).catch(() => {
           setVotes((current) => current - voteAmount);
           return errorCommentsMessage;
         });
@@ -39,13 +39,13 @@ function Votes(props) {
 
     switch (voteChangeType) {
       case 'article':
-        patchArticleVotes(targetId, voteChangeValue, voteAmount).catch(() => {
+        patchArticleVotes(targetId, voteChangeValue, voteAmount, user, token).catch(() => {
           setVotes((current) => current + voteAmount);
           return errorCommentsMessage;
         });
         break;
       case 'comment':
-        patchCommentVotes(targetId, voteChangeValue, voteAmount).catch(() => {
+        patchCommentVotes(targetId, voteChangeValue, voteAmount, user, token).catch(() => {
           setVotes((current) => current + voteAmount);
           return errorCommentsMessage;
         });

@@ -10,7 +10,12 @@ export default function CommentBody(props) {
 
   const editCommentComponent = (
     <form>
-      <textarea className="form__text-area" value={editTextValue} onChange={handleChange} />
+      <textarea
+        className="form__text-area comment__edit-body"
+        value={editTextValue}
+        onChange={handleChange}
+        rows={4}
+      />
     </form>
   );
 

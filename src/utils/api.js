@@ -60,14 +60,19 @@ export const patchArticleVotes = async (articleId, voteType, voteAmount) => {
   return response.data;
 };
 
-export const patchCommentVotes = async (commentId, voteType, voteAmount) => {
-  const vote = {};
+export const patchCommentVotes = async (commentId, voteType, voteAmount, username, token) => {
+  const vote = { username };
   if (voteType === 'inc') {
     vote.inc_votes = voteAmount;
   } else if (voteType === 'dec') {
     vote.inc_votes = -voteAmount;
   }
-  const response = await instance.patch(`/comments/${commentId}`, vote);
+
+  const response = await instance.patch(`/comments/${commentId}`, vote, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 
   return response.data;
 };
