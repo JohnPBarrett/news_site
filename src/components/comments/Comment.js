@@ -30,30 +30,15 @@ function Comment(props) {
     setEditMode({ commentId: commentId, editMode: true });
   };
 
-  const cancelEditingComment = () => {
-    setEditMode({ commentId: -1, editMode: false });
-  };
-
-  const editButton = (commentId) => (
+  const editButton = (commentId, body) => (
     <button
       type="button"
       className="comment__button"
       onClick={editUserComment}
       data-commentid={`${commentId}`}
+      data-body={`${body}`}
     >
       edit
-    </button>
-  );
-
-  const updateButton = (
-    <button type="button" className="comment__button">
-      update
-    </button>
-  );
-
-  const cancelButton = (
-    <button type="button" className="comment__button" onClick={cancelEditingComment}>
-      cancel
     </button>
   );
 
@@ -72,6 +57,8 @@ function Comment(props) {
             commentBody={comment.body}
             editMode={editMode}
             commentId={comment.comment_id}
+            setEditMode={setEditMode}
+            setCommentUpdate={setCommentDeleted}
           />
 
           <div className="comment__interaction-container">
@@ -87,14 +74,8 @@ function Comment(props) {
                 delete
               </button>
             )}
-            {editMode.commentId === comment.comment_id ? (
-              <>
-                {cancelButton}
-                {updateButton}
-              </>
-            ) : (
-              editButton(comment.comment_id)
-            )}
+            {editMode.commentId !== comment.comment_id &&
+              editButton(comment.comment_id, comment.body)}
           </div>
         </div>
       ))}
