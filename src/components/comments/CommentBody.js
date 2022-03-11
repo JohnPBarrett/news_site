@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import UserContext from '../../context/UserContext';
 import { patchCommentBody } from '../../utils/api';
 
@@ -8,7 +8,7 @@ export default function CommentBody(props) {
   const [errorMessage, setErrorMessage] = useState('');
   const { user, token } = useContext(UserContext);
 
-  useEffect(() => {}, [editMode]);
+  // useEffect(() => {}, [editMode]);
 
   const handleChange = (event) => {
     setEditTextValue(event.currentTarget.value);

@@ -4,15 +4,29 @@ import UserContext from '../../context/UserContext';
 import { getArticle, deleteArticle } from '../../utils/api';
 import convertDate from '../../utils/convertDate';
 import './Article.css';
+import ArticleBody from './ArticleBody';
 
 function Article(props) {
   const [article, setArticle] = useState({});
+  const [editMode, setEditMode] = useState({ articleId: -1, editMode: false });
   const componentMounted = useRef(true);
   const { articleId, setError } = props;
   const { setArticleLoaded, setPageButtonsLength } = props;
+  const [editTextValue, setEditTextValue] = useState('');
+
   const { user, token } = useContext(UserContext);
 
   const navigate = useNavigate();
+
+  const editUserArticle = () => {
+    setEditMode({ articleId, editMode: true });
+  };
+
+  const editButton = (
+    <button type="button" className="article-page__button" onClick={editUserArticle}>
+      edit article
+    </button>
+  );
 
   const deleteUserArticle = async (event) => {
     setError('');
@@ -33,6 +47,7 @@ function Article(props) {
         if (componentMounted.current) {
           setArticle(data.article);
           setPageButtonsLength(Math.ceil(data.article.comment_count / 10));
+          setEditTextValue(data.article.body);
         }
       })
       .then(() => {
@@ -57,9 +72,16 @@ function Article(props) {
       <div className="article-page__article__title">
         <p>{article.title}</p>
       </div>
-      <div className="article-page__article__body">
-        <p>{article.body}</p>
-      </div>
+      <ArticleBody
+        articleBody={article.body}
+        author={article.author}
+        editMode={editMode}
+        articleId={articleId}
+        setEditMode={setEditMode}
+        setEditTextValue={setEditTextValue}
+        editTextValue={editTextValue}
+        setArticleLoaded={setArticleLoaded}
+      />
 
       <div className="article-page__article__info-container">
         <div className="article-page__article__total-comments">
@@ -71,13 +93,14 @@ function Article(props) {
         {user !== 'guest' && (
           <button
             type="button"
-            className="article-page__delete"
+            className="article-page__button"
             onClick={deleteUserArticle}
             data-articleid={`${articleId}`}
           >
             delete article
           </button>
         )}
+        {!editMode.editMode && article.author === user && editButton}
       </div>
     </article>
   );

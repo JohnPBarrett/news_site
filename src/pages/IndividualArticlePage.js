@@ -11,6 +11,7 @@ function IndividualArticlePage() {
   const [articleLoaded, setArticleLoaded] = useState(false);
   const [commentsLoaded, setCommentsLoaded] = useState(false);
   const [pageButtonsLength, setPageButtonsLength] = useState(1);
+
   const [error, setError] = useState('');
 
   useEffect(() => {

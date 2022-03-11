@@ -81,6 +81,16 @@ export const patchCommentVotes = async (commentId, voteType, voteAmount, usernam
   return response.data;
 };
 
+export const patchArticleBody = async (articleId, data, token) => {
+  const response = await instance.patch(`/articles/${articleId}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  return response.data;
+};
+
 export const patchCommentBody = async (commentId, data, token) => {
   const response = await instance.patch(`/comments/${commentId}`, data, {
     headers: {
