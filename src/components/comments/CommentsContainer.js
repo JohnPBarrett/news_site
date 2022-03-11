@@ -124,9 +124,8 @@ function CommentsContainer(props) {
 
   return (
     <>
-      {' '}
+      {error && <p className="error-message">{error}</p>}
       <div className="comment__container">
-        {error && <h2>{error}</h2>}
         {user === 'guest' ? (
           userNotLoggedIn
         ) : (

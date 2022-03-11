@@ -62,7 +62,7 @@ export default function CreateArticlePage() {
   return (
     <main className="content">
       <div className="form__container">
-        {error && <div>{error}</div>}
+        {error && <p className="error-message">{error}</p>}
         <form className="form" onSubmit={submitPost}>
           <div className="form__group">
             <label htmlFor="title" className="form__label">

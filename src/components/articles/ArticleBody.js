@@ -17,6 +17,7 @@ export default function ArticleBody(props) {
   };
 
   const updateArticleBody = async () => {
+    setErrorMessage('');
     try {
       const data = {
         username: user,
@@ -59,7 +60,7 @@ export default function ArticleBody(props) {
 
   return (
     <div className="article-page__article__body">
-      {errorMessage && <div>{errorMessage}</div>}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       {editMode.articleId === articleId ? editCommentComponent : editTextValue}
     </div>
   );

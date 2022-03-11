@@ -76,6 +76,16 @@
   background-color: var(--color-grey-light-2);
 }
 
+.error-message {
+  font-size: inherit;
+  color: #ba3939;
+  background: #ffe0e0;
+  border: 1px solid #a33a3a;
+  text-align: center;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
 @media only screen and (min-width: 600px) {
   .form__group-button {
     font-size: 1.8rem;

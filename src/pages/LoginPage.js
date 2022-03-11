@@ -38,9 +38,9 @@ function LoginPage() {
         <p>Username: grumpy19</p>
         <p>Password: grumpy191</p>
       </div>
+      {error && <p className="error-message">{error}</p>}
       <div className="form__container">
         <h1>Login</h1>
-        {error && <h2>{error}</h2>}
 
         <form className="form" onSubmit={(e) => login(e)}>
           <div className="form__group">

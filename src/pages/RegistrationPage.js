@@ -32,10 +32,9 @@ function RegistrationPage() {
 
   return (
     <div className="content">
+      {error && <p className="error-message">{error}</p>}
       <div className="form__container">
         <h1>Sign up</h1>
-        {error && <h2>{error}</h2>}
-
         <form className="form" action="post" onSubmit={(e) => signUp(e)}>
           <div className="form__group">
             <label htmlFor="username" className="form__label">

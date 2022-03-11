@@ -64,7 +64,7 @@ function Comment(props) {
 
           <div className="comment__interaction-container">
             <Votes id={comment.comment_id} currentVotes={comment.votes} voteType="comment" />
-            {error && <div>{error}</div>}
+            {error && <p className="error-message">{error}</p>}
             {user === comment.author && (
               <button
                 type="button"
