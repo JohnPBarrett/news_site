@@ -59,6 +59,7 @@ function Comment(props) {
             commentId={comment.comment_id}
             setEditMode={setEditMode}
             setCommentUpdate={setCommentDeleted}
+            author={comment.author}
           />
 
           <div className="comment__interaction-container">
@@ -74,7 +75,9 @@ function Comment(props) {
                 delete
               </button>
             )}
+
             {editMode.commentId !== comment.comment_id &&
+              user === comment.author &&
               editButton(comment.comment_id, comment.body)}
           </div>
         </div>
