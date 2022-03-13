@@ -12,6 +12,7 @@ import RegistrationPage from './pages/RegistrationPage';
 import UserPage from './pages/UserPage';
 import CreateArticlePage from './pages/CreateArticlePage';
 import PrivateRoute from './components/routing/PrivateRoute';
+import UpdateUserPage from './pages/UpdateUserPage';
 
 function App() {
   const [user, setUser] = useState('guest');
@@ -41,6 +42,7 @@ function App() {
               element={user === 'guest' ? <RegistrationPage /> : <Navigate to="/" />}
             />
             <Route path="/user/:username" element={<UserPage />} />
+            <Route path="/user/:username/edit" element={<UpdateUserPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

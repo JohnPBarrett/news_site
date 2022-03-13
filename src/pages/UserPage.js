@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { getArticles, getComments } from '../utils/api';
 import LoaderSpinner from '../utils/LoadingSpinner';
 import ArticleRow from '../components/articles/ArticleRow';
 import Comment from '../components/comments/Comment';
 import randomKey from '../utils/randomKeyGenerator';
-
+import UserContext from '../context/UserContext';
 import './UserPage.css';
 
 function UserPage() {
   const { username } = useParams();
+  const { user } = useContext(UserContext);
   const [userArticles, setUserArticles] = useState([]);
   const [userComments, setUserComments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -51,6 +52,7 @@ function UserPage() {
     <main className="content userpage__content--flex-column">
       <div>
         <p className="userpage__user-heading">{username}&apos;s page</p>
+        {username === user && <Link to="edit">Update user profile</Link>}
         <div>
           <ul className="userpage__filter-nav">
             <li className="userpage__filter-element">

@@ -135,3 +135,13 @@ export const getUserData = async (username) => {
 
   return response.data;
 };
+
+export const updateUserData = async (data, token) => {
+  const response = await instance.patch(`/users/${data.username}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  return response.data;
+};
