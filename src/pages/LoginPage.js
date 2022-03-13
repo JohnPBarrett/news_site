@@ -3,10 +3,10 @@ import './LoginPage.css';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../context/UserContext';
-import { loginUser } from '../utils/api';
+import { getUserData, loginUser } from '../utils/api';
 
 function LoginPage() {
-  const { setUser, setToken } = useContext(UserContext);
+  const { setUser, setToken, setAvatar } = useContext(UserContext);
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
@@ -22,6 +22,10 @@ function LoginPage() {
 
       setUser(data.username);
       setToken(response.data.user.token);
+
+      const avatar = await getUserData(data.username);
+      setAvatar(avatar.user.avatar_url);
+
       navigate('/');
     } catch (err) {
       setError('Error occured during login');

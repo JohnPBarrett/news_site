@@ -129,3 +129,9 @@ export const loginUser = async (data) => {
 
   return response;
 };
+
+export const getUserData = async (username) => {
+  const response = await instance.get(`/users/${username}`);
+
+  return response.data;
+};

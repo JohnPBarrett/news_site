@@ -5,7 +5,7 @@ import './Nav.css';
 import UserContext from '../../context/UserContext';
 
 function Nav() {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, avatar } = useContext(UserContext);
 
   const logout = () => {
     setUser('guest');
@@ -54,7 +54,11 @@ function Nav() {
       {user === 'guest' ? loginButton : userAccountButton}
       {user === 'guest' ? registrationButton : logoutButton}
 
-      <p className="header__current-user">Logged in as {user}</p>
+      <p className="header__current-user">
+        {avatar && <img src={avatar} alt="user__avatar" className="header__user-avatar" />}Logged in
+        as&nbsp;
+        {user}
+      </p>
     </header>
   );
 }

@@ -96,13 +96,21 @@
   min-width: 10rem;
   text-align: right;
   font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.header__user-avatar {
+  border-radius: 50%;
+  max-width: 1.5rem;
+  margin-right: 0.5rem;
 }
 
 .header__user-sign-up {
   margin-right: 1.3rem;
 }
 
-@media only screen and (min-width: 350px) {
+@media only screen and (min-width: 400px) {
   .header__current-user {
     min-width: auto;
     margin-left: 0;

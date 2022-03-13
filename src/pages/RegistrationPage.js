@@ -2,10 +2,10 @@ import './authforms.css';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../context/UserContext';
-import { registeruser } from '../utils/api';
+import { registeruser, getUserData } from '../utils/api';
 
 function RegistrationPage() {
-  const { setUser, setToken } = useContext(UserContext);
+  const { setUser, setToken, setAvatar } = useContext(UserContext);
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
@@ -24,6 +24,10 @@ function RegistrationPage() {
 
       setUser(data.username);
       setToken(response.data.user.token);
+
+      const avatar = await getUserData(data.username);
+      setAvatar(avatar.user.avatar_url);
+
       navigate('/');
     } catch (err) {
       setError('Error occured during sign up');

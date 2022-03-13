@@ -16,9 +16,10 @@ import PrivateRoute from './components/routing/PrivateRoute';
 function App() {
   const [user, setUser] = useState('guest');
   const [token, setToken] = useState('');
+  const [avatar, setAvatar] = useState('');
 
   return (
-    <UserContext.Provider value={{ user, setUser, token, setToken }}>
+    <UserContext.Provider value={{ user, setUser, token, setToken, avatar, setAvatar }}>
       <BrowserRouter>
         <div className="container">
           <Nav />
