@@ -42,7 +42,14 @@ function App() {
               element={user === 'guest' ? <RegistrationPage /> : <Navigate to="/" />}
             />
             <Route path="/user/:username" element={<UserPage />} />
-            <Route path="/user/:username/edit" element={<UpdateUserPage />} />
+            <Route
+              path="/user/:username/edit"
+              element={
+                <PrivateRoute>
+                  <UpdateUserPage />
+                </PrivateRoute>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
